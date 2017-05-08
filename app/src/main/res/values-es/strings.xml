@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+<string name="app_name">Turco-TrabajoPractico</string>
+<string name="titulo_login">Registro de Usuario</string>
+<string name="desc_login">Aplicacion Compras  Buffet-UTN</string>
+<string name="label_mail">Mail</string>
+<string name="label_clave">Clave</string>
+<string name="ch_recuerdame">Recordarme</string>
+<string name="edit_mail">nombre@gmail.com</string>
+<string name="edit_clave">Clave</string>
+<string name="btn_ingresar">Ingresar</string>
+<string name="btn_registrarse">Registrarse</string>
+<string name="desc_registro_user">Pantalla de Registro Usuario  Por favor ingrese datos válidos</string>
+<string name="label_nombre">Nombre</string>
+<string name="label_apellido">Apellido</string>
+<string name="label_dni">DNI</string>
+<string name="label_reingrese">Reingrese</string>
+<string name="edit_nombre">Juan</string>
+<string name="edit_apellido">Turco</string>
+<string name="edit_dni">DNI/CUIL</string>
+<string name="edit_reingrese">Reingrese la Clave</string>
+</resources>

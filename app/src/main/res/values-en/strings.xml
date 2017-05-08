@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Turkein-Practical work</string>
+    <string name="titulo_login">User Registration</string>
+    <string name="desc_login">Application Shopping Buffet-UTN</string>
+    <string name="label_mail">E-mail</string>
+    <string name="label_clave">Password</string>
+    <string name="ch_recuerdame">Remember me</string>
+    <string name="edit_mail">name@gmail.com</string>
+    <string name="edit_clave">Password</string>
+    <string name="btn_ingresar">Sign in</string>
+    <string name="btn_registrarse">Check in</string>
+    <string name="desc_registro_user">User Registration Screen Please enter valid data</string>
+    <string name="label_nombre">Name</string>
+    <string name="label_apellido">Last name</string>
+    <string name="label_dni">DNI</string>
+    <string name="label_reingrese">Reentry</string>
+    <string name="edit_nombre">Juan</string>
+    <string name="edit_apellido">Turco</string>
+    <string name="edit_dni">DNI/CUIL</string>
+    <string name="edit_reingrese">Reenter the Key</string>
+</resources>

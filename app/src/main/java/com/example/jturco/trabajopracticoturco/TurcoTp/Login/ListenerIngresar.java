@@ -1,6 +1,10 @@
-package com.example.jturco.trabajopracticoturco;
+package com.example.jturco.trabajopracticoturco.TurcoTp.Login;
 
+import android.content.Intent;
 import android.view.View;
+
+import com.example.jturco.trabajopracticoturco.R;
+import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.MainActivityRegistro;
 
 /**
  * Created by jturco on 04/05/2017.
