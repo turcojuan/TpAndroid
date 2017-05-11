@@ -1,6 +1,7 @@
 package com.example.jturco.trabajopracticoturco.TurcoTp.Login;
 
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.support.v4.content.SharedPreferencesCompat;
 import android.widget.Button;
@@ -31,40 +32,43 @@ public class ControladorUsuarioLogin {
 
 
         if ((usuarioIngresado.getMail().toString().equals(MainActivity.mailValidoUser()) == true) && (usuarioIngresado.getPassword().toString().equals(MainActivity.passValidoUser()) == true)) {
+            // Aca hay que agregarle un OR para que valide contra el mail y pass del array de ModelUserRegistrado, para ver si no esta cargado.
             return "Login Correcto";
         } else {
             return "Login Incorrecto";
         }
     }
 
-    public void ValidaLoginCargaUser(EditText editMail, EditText editPassword, CheckBox ckRecuerdame, Button comprobarLogin)
+    public void ValidaLoginCargaUser(EditText editMail, EditText editPassword, CheckBox ckRecuerdame, Button comprobarLogin, MainActivity act)
     {
         if ((editMail.getText().toString().isEmpty()) || (editPassword.getText().toString().isEmpty()))
-        {
-            if (editMail.getText().toString().isEmpty())
-            {
-                editMail.setError("Ingrese mail");
-                if (editPassword.getText().toString().isEmpty())
                 {
-                    editPassword.setError("Ingrese password"); } //para que te muestre el mensaje en pass sino ingresaste ninguno
+                    if (editMail.getText().toString().isEmpty())
+                    {
+                        editMail.setError("Ingrese mail");
+                        if (editPassword.getText().toString().isEmpty())
+                        {
+                            editPassword.setError("Ingrese password"); } //para que te muestre el mensaje en pass sino ingresaste ninguno
 
-            } else if (editPassword.getText().toString().isEmpty())
-            {
+                    } else if (editPassword.getText().toString().isEmpty())
+                    {
                 editPassword.setError("Ingrese password");
             }
 
             //si no está vacio y el mail tiene @ y . recien creo el user para validar.
-        }else if (editMail.getText().toString().contains("@")||(editMail.getText().toString().contains(".com"))){
+        }else if ((editMail.getText().toString().contains("@"))&&(editMail.getText().toString().contains(".com"))){
 
             ModelUsuarioLogin usuario = new ModelUsuarioLogin(editMail.getText().toString(), editPassword.getText().toString());
-            comprobacionLogin= (this.validarUsuario(usuario));// Voy a llamar al metodo del controller.
+            comprobacionLogin= (this.validarUsuario(usuario));
+
             if(comprobacionLogin.toString().equals("Login Correcto")== true)
             {
-                /*if (chRecuerdame.isChecked())
+                if (ckRecuerdame.isChecked())
                 {
                     //recien guardo cuando está OK los datos del login
-                    actividad.guardarDatosUser(editMail.getText().toString(),editMail.getText().toString());
-                }*/
+                    act.guardarDatosUser(editMail.getText().toString(),editMail.getText().toString());
+                }
+
 
                 comprobarLogin.setText(comprobacionLogin.toString());
             }

@@ -57,47 +57,9 @@ public class VistaUsuarioLogin implements IIngresar {
         //esta bien que cree aca una instancia de modelo???. Osea tengo que asociar aca lo que se ingresa con el modelo?
         //Aca tendria que ir la logica (a llamar a algun metodo que valide) si el mail y pass estan en la "base"
         //Hago validacion para que no cree el user si no estan los datos.
+        //La paso todos lo parametros para que la logica se haga en el controller
 
-        //miControladorLogin.ValidaLoginCargaUser(editMail,editPassword,chRecuerdame,comprobarLogin); //para hacer la logica en controller
-
-
-         //Validar y cargar el user
-        if ((editMail.getText().toString().isEmpty()) || (editPassword.getText().toString().isEmpty()))
-        {
-            if (editMail.getText().toString().isEmpty())
-            {
-                editMail.setError("Ingrese mail");
-                if (editPassword.getText().toString().isEmpty())
-                {
-                    editPassword.setError("Ingrese password"); } //para que te muestre el mensaje en pass sino ingresaste ninguno
-
-            } else if (editPassword.getText().toString().isEmpty())
-            {
-                editPassword.setError("Ingrese password");
-            }
-
-            //si no está vacio y el mail tiene @ y . recien creo el user para validar.
-        }else if (editMail.getText().toString().contains("@")||(editMail.getText().toString().contains(".com"))){
-
-            ModelUsuarioLogin usuario = new ModelUsuarioLogin(editMail.getText().toString(), editPassword.getText().toString());
-            comprobacionLogin= (miControladorLogin.validarUsuario(usuario));// Voy a llamar al metodo del controller.
-            if(comprobacionLogin.toString().equals("Login Correcto")== true)
-            {
-                if (chRecuerdame.isChecked())
-                {
-                    //recien guardo cuando está OK los datos del login
-                    actividad.guardarDatosUser(editMail.getText().toString(),editMail.getText().toString());
-                }
-
-                comprobarLogin.setText(comprobacionLogin.toString());
-            }
-            else
-            {comprobarLogin.setText(comprobacionLogin.toString());}//Mostrar dialogo
-        }else
-        {
-            editMail.setError("Ingrese un mail correcto");  //else para el @ y .
-        }
-
+        miControladorLogin.ValidaLoginCargaUser(editMail,editPassword,chRecuerdame,comprobarLogin,actividad);
     }
 
     @Override

@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/activity_registro"
-    android:background="#AAADE1">
+    android:background="@color/colorFondo">
 
     <LinearLayout android:orientation="vertical"
 
@@ -186,7 +186,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/btn_registrarse"
-            android:id="@+id/btnRegis"
+            android:id="@+id/btnRegistrarme"
             android:textSize="15dp"
             />
     </LinearLayout>

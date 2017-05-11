@@ -17,10 +17,10 @@ public class MainActivityRegistro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-        //ModelUsuarioLogin miModeloLogin= new ModelUsuarioLogin();
-        //VistaUsuarioLogin miVistaLogin = new VistaUsuarioLogin(this); //Le paso la instancia de la activity_main
-        //ControladorUsuarioLogin miControladorLogin = new ControladorUsuarioLogin((new ListenerIngresar(miVistaLogin))); // le pasas mi vista porque implementa IMostrarResultado
-        //miVistaLogin.setMiControlador(miControladorLogin);
+        ModelUsuarioRegistro miModeloRegistro= new ModelUsuarioRegistro();
+        VistaUsuarioRegistro miVistaRegistro = new VistaUsuarioRegistro(this); //Le paso la instancia de la activity_main
+        ControladorUsuarioRegistro miControladorRegistro = new ControladorUsuarioRegistro((new ListenerRegistar(miVistaRegistro))); // le pasas mi vista porque implementa IMostrarResultado
+        miVistaRegistro.setMiControlador(miControladorRegistro);
 
 
         ActionBar actionBar = getSupportActionBar();

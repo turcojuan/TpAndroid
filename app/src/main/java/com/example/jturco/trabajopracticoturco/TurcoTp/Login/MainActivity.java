@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.CheckBox;
 
 import com.example.jturco.trabajopracticoturco.R;
@@ -27,23 +30,18 @@ public class MainActivity extends AppCompatActivity {
         //Para esconder la barra
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-
         //para validar el recuerdame
-
-
-           this.traerMailUserGuardado();
-           this.traerPassUserGuardado();
-
         //Si te tira el valor por defecto quiere decir que no se encontro nada en el SheredPrefer, si es distinto al valor por defecto que logue con los datos y cargados.
         if  ((!this.traerMailUserGuardado().equals("No encontro mail en preference")) && (!this.traerPassUserGuardado().equals("No encontro mail en preference")))
         {
-            Intent in = new Intent(this,MainActivityRegistro.class);
-            this.startActivity(in);
+
+            Log.d("Verificacion","Ok preferences");
+            // Intent in = new Intent(this,MainActivityRegistro.class);
+            //this.startActivity(in);
 
         }
 
     }
-
         //Hago esto porque tiene que esta declarado aca y quiero que sea mediante clase
     public static String mailValidoUser() {
         String mailValido = "aaa@aaa.com";
@@ -60,9 +58,12 @@ public class MainActivity extends AppCompatActivity {
 
     {SharedPreferences miShPref = getSharedPreferences("miConfig", MODE_PRIVATE); // es clave valor
 
-        miShPref.edit().putString(MAIL,mail);
-        miShPref.edit().putString(PASSWORD,pass);
-        miShPref.edit().commit();
+        SharedPreferences.Editor editor = miShPref.edit();
+
+
+        editor.putString(MAIL,mail);
+        editor.putString(PASSWORD,pass);
+        editor.commit();
 }
 
 
@@ -87,5 +88,28 @@ public class MainActivity extends AppCompatActivity {
 
         return pass;
     }
+
+   /* @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+
+        getMenuInflater().inflate(R.menu.menu,menu);
+
+        return true;
+
+    }
+    //ya tienen su listener creado, no hacer falta crear uno nuevo
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.item1) {
+            Log.d("", "Click sobre la opcion 1 del menu");
+        }
+        if(item.getItemId() == R.id.item2) {
+            Log.d("", "Click sobre la opcion 2 del menu");
+        }
+
+        return super.onOptionsItemSelected(item);
+    }*/
 
 }

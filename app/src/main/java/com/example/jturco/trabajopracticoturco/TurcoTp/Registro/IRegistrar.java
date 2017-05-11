@@ -5,4 +5,5 @@ package com.example.jturco.trabajopracticoturco.TurcoTp.Registro;
  */
 
 public interface IRegistrar {
+    public void registarUsuario();
 }
