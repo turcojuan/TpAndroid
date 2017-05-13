@@ -39,6 +39,9 @@ public class VistaUsuarioRegistro implements IRegistrar {
 
     public EditText getEditReingrese() {return editReingrese; }
 
+    public MainActivityRegistro getActividad() {
+        return actividad;
+    }
 
     public void setMiControlador(ControladorUsuarioRegistro con){
         this.miControladorRegistro=con;
@@ -59,6 +62,7 @@ public class VistaUsuarioRegistro implements IRegistrar {
 
 
     }
+
     @Override
     public void registarUsuario() {
 
@@ -66,13 +70,13 @@ public class VistaUsuarioRegistro implements IRegistrar {
         //Aca tengo que ir a validar los datos y si agregar el user a los modelos
         //Queda bien si hago un Get para pasar todos los campos al controller?.
 
-        miControladorRegistro.ValidaRegistroUser(actividad,editNombre,editApellido,editDNI,editMail,editPassword,editReingrese);
+        miControladorRegistro.ValidaRegistroUser(editNombre,editApellido,editDNI,editMail,editPassword,editReingrese,this);
     }
 
 
     // para indicar que faltan ingresar campos
     public void mostrarMensajeAlUsuario(){
-        Toast toast1 = Toast.makeText(this.actividad,"Deber complemetar todos los campos", Toast.LENGTH_SHORT);
+        Toast toast1 = Toast.makeText(this.actividad,"Deber completar todos los campos", Toast.LENGTH_SHORT);
         toast1.setGravity(Gravity.CENTER,0,500);
         toast1.show();
     }

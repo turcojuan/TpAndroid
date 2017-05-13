@@ -4,13 +4,20 @@ package com.example.jturco.trabajopracticoturco.TurcoTp.Registro;
  * Created by jturco on 09/05/2017.
  */
 
-public class UserRegistrado {
+public class UserRegistrado{
     String nombre;
     String apellido;
     String dni;
     String mail;
     String clave;
 
+    public String getDni() {
+        return dni;
+    }
+
+    public String getMail() {
+        return mail;
+    }
 
     public UserRegistrado(String nombre, String apellido, String dni, String mail, String clave) {
         this.nombre = nombre;
@@ -26,7 +33,7 @@ public class UserRegistrado {
         if(o instanceof UserRegistrado)
         {
             UserRegistrado u1 = (UserRegistrado) o;
-            if(this.nombre.equals(u1.nombre) && (this.apellido.equals(u1.apellido) && (this.dni == u1.dni))){
+            if(this.mail.equals(u1.getMail()) || (this.dni.equals(u1.getDni()))){
 
                 return true;}
             else
@@ -45,17 +52,11 @@ public class UserRegistrado {
         {
             resultado = numero * resultado + dni.hashCode();
         }
-        if(nombre!=null)
-            resultado = numero * resultado + nombre.hashCode();
-
-
-        if (apellido != null)
-        {
-            resultado = numero * resultado + apellido.hashCode();
-            return resultado;
+        if(nombre!=null) {
+            resultado = numero * resultado + mail.hashCode();
         }
-
         return resultado;
 
     }
-}
+
+  }

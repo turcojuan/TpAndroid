@@ -2,11 +2,15 @@ package com.example.jturco.trabajopracticoturco.TurcoTp.Login;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.content.SharedPreferencesCompat;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+
+import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.MainActivityRegistro;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -18,10 +22,12 @@ public class ControladorUsuarioLogin {
 
     ListenerIngresar miListenerIng;
     String comprobacionLogin;
+    MainActivity actividad;
 
     public ControladorUsuarioLogin(ListenerIngresar ing) {
 
         this.miListenerIng = ing;
+
     }
 
     public ListenerIngresar getMiListener() { //esto lo hago para poder hacer el btn.SetOnClick (para pasarle el listener) en la vista (Si o si hay que pasarlo en la vista).
@@ -39,8 +45,9 @@ public class ControladorUsuarioLogin {
         }
     }
 
-    public void ValidaLoginCargaUser(EditText editMail, EditText editPassword, CheckBox ckRecuerdame, Button comprobarLogin, MainActivity act)
+    public void ValidaLoginCargaUser(EditText editMail, EditText editPassword, CheckBox ckRecuerdame, Button comprobarLogin, VistaUsuarioLogin vistaLogin)
     {
+
         if ((editMail.getText().toString().isEmpty()) || (editPassword.getText().toString().isEmpty()))
                 {
                     if (editMail.getText().toString().isEmpty())
@@ -66,20 +73,40 @@ public class ControladorUsuarioLogin {
                 if (ckRecuerdame.isChecked())
                 {
                     //recien guardo cuando está OK los datos del login
-                    act.guardarDatosUser(editMail.getText().toString(),editMail.getText().toString());
+                    vistaLogin.getActividad().guardarDatosUser(editMail.getText().toString(),editMail.getText().toString());
                 }
 
-
+                //Intent al menu de productos.
                 comprobarLogin.setText(comprobacionLogin.toString());
             }
             else
-            {comprobarLogin.setText(comprobacionLogin.toString());}//Mostrar dialogo
+            {   //Mostrar dialogo
+
+                vistaLogin.getActividad().mostrarDialogo();
+                //comprobarLogin.setText(comprobacionLogin.toString());
+            }
         }else
         {
             editMail.setError("Ingrese un mail correcto");  //else para el @ y .
         }
     }
 
+    public void validarRecuerdame(MainActivity act){
+        //Le paso la activity para que la logica quede aca, y esto se tiene que ejecutar desde el principio
+    //Para validar el recuerdame
+    //Si te tira el valor por defecto quiere decir que no se encontro nada en el SheredPrefer, si es distinto al valor por defecto que logue con los datos y cargados.
+    if  ((!act.traerMailUserGuardado().equals("No encontro mail en preference")) && (!act.traerPassUserGuardado().equals("No encontro mail en preference")))
+    {
+
+        Log.d("Verificacion","Ok preferences");
+        //Aca en lugar de ir a Registro tiene que ir al Menu de productos
+        Intent in = new Intent(act,MainActivityRegistro.class);
+        act.startActivity(in);
+    }
+    else {
+        Log.d("No prefe","No prefe");}
+
+    }
 
 }
 

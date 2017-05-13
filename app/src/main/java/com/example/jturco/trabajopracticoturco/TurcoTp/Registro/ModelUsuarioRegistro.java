@@ -1,5 +1,7 @@
 package com.example.jturco.trabajopracticoturco.TurcoTp.Registro;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +12,14 @@ import java.util.List;
 public class ModelUsuarioRegistro {
 
     List<UserRegistrado> listaUsersRegis= new ArrayList<>();
-    UserRegistrado user;
+
 
     public ModelUsuarioRegistro()
-        {
+        {   //hago esto para ver que muestre el Dialogo que no se genero el user.
+            UserRegistrado ur=new UserRegistrado("a","a","dni","a@a.com","aa");
+            this.listaUsersRegis.add(ur);
+            Log.d("UserParaVerificar","UserParaVerificar");
+
 
         }
 

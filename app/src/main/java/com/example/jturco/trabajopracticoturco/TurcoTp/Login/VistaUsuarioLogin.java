@@ -23,6 +23,9 @@ public class VistaUsuarioLogin implements IIngresar {
     private Button btnRegistrar;
     private CheckBox chRecuerdame;
 
+    public MainActivity getActividad() {
+        return actividad;
+    }
 
     //EN LA VISTA LE PASO EL ACTIVITY PARA IR A BUSCAR LOS IDS , EN EL CONSTRUCTOR
     //IMPLEMENTA LA INTERFACE QUE EJECUTA EL LISTENER.
@@ -35,15 +38,12 @@ public class VistaUsuarioLogin implements IIngresar {
 
     public VistaUsuarioLogin(MainActivity a){
         this.actividad=a;
-
         btnIngresar = (Button) actividad.findViewById(R.id.btnIngresar);
         editMail= (EditText)  actividad.findViewById(R.id.editTextMail);
         editPassword=(EditText) actividad.findViewById(R.id.editTextPass);
         btnRegistrar= (Button) actividad.findViewById(R.id.btnRegis);
         chRecuerdame= (CheckBox) actividad.findViewById(R.id.checkRecordarme);
         comprobarLogin= (Button) actividad.findViewById(R.id.btnComprobacionLogin);
-
-
 
     }
 
@@ -59,7 +59,7 @@ public class VistaUsuarioLogin implements IIngresar {
         //Hago validacion para que no cree el user si no estan los datos.
         //La paso todos lo parametros para que la logica se haga en el controller
 
-        miControladorLogin.ValidaLoginCargaUser(editMail,editPassword,chRecuerdame,comprobarLogin,actividad);
+        miControladorLogin.ValidaLoginCargaUser(editMail,editPassword,chRecuerdame,comprobarLogin,this);
     }
 
     @Override
@@ -68,6 +68,12 @@ public class VistaUsuarioLogin implements IIngresar {
         Intent in = new Intent(actividad,MainActivityRegistro.class);
         actividad.startActivity(in);
     }
+
+
+    {
+
+    }
+
 
 
 }

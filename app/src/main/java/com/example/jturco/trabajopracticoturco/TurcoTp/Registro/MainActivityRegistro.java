@@ -22,8 +22,13 @@ public class MainActivityRegistro extends AppCompatActivity {
         ControladorUsuarioRegistro miControladorRegistro = new ControladorUsuarioRegistro((new ListenerRegistar(miVistaRegistro))); // le pasas mi vista porque implementa IMostrarResultado
         miVistaRegistro.setMiControlador(miControladorRegistro);
 
-
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+
+
     }
+
+    public void mostrarDialogo()
+    {MiDialogoRegistro dialog = new MiDialogoRegistro();
+        dialog.show(getSupportFragmentManager(), "dialogo");}
 }

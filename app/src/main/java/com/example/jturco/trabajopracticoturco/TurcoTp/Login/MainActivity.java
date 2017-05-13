@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 
 import com.example.jturco.trabajopracticoturco.R;
 import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.MainActivityRegistro;
+import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.MiDialogoRegistro;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,16 +31,10 @@ public class MainActivity extends AppCompatActivity {
         //Para esconder la barra
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-        //para validar el recuerdame
-        //Si te tira el valor por defecto quiere decir que no se encontro nada en el SheredPrefer, si es distinto al valor por defecto que logue con los datos y cargados.
-        if  ((!this.traerMailUserGuardado().equals("No encontro mail en preference")) && (!this.traerPassUserGuardado().equals("No encontro mail en preference")))
-        {
 
-            Log.d("Verificacion","Ok preferences");
-            // Intent in = new Intent(this,MainActivityRegistro.class);
-            //this.startActivity(in);
 
-        }
+        //Llamar a verificar si estan las referencias (Hacer esta logica en el controler).
+        miControladorLogin.validarRecuerdame(this);
 
     }
         //Hago esto porque tiene que esta declarado aca y quiero que sea mediante clase
@@ -88,6 +83,10 @@ public class MainActivity extends AppCompatActivity {
 
         return pass;
     }
+
+    public void mostrarDialogo()
+    {MiDialogoLogin dialog = new MiDialogoLogin();
+        dialog.show(getSupportFragmentManager(), "dialogoLogin");}
 
    /* @Override
     public boolean onCreateOptionsMenu(Menu menu)
