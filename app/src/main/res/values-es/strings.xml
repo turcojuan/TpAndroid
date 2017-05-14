@@ -20,7 +20,7 @@
 <string name="edit_apellido">Turco</string>
 <string name="edit_dni">DNI/CUIL</string>
 <string name="edit_reingrese">Reingrese la Clave</string>
-<string name="dialog_registro">No se pudo generar el usuario</string>
+<string name="dialog_registro">No se pudo generar el usuario, el usuario ya existe</string>
 <string name="dialog_registro_titulo">Alerta</string>
 <string name="dialog_registro_btn">Aceptar</string>
 <string name="dialog_login">El usuario no es válido</string>

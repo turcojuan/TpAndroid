@@ -26,6 +26,7 @@
         android:paddingBottom="20dp">
 
         <TextView
+
             android:text="@string/titulo_login"
             android:layout_width="275dp"
             android:layout_height="wrap_content"

@@ -89,23 +89,23 @@ public class MainActivity extends AppCompatActivity {
         dialog.show(getSupportFragmentManager(), "dialogoLogin");}
 
    /* @Override
-    public boolean onCreateOptionsMenu(Menu menu)
+    public boolean onCreateOptionsMenu(Menu menu_pedidos)
     {
 
-        getMenuInflater().inflate(R.menu.menu,menu);
+        getMenuInflater().inflate(R.menu_pedidos.menu_pedidos,menu_pedidos);
 
         return true;
 
     }
-    //ya tienen su listener creado, no hacer falta crear uno nuevo
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.item1) {
-            Log.d("", "Click sobre la opcion 1 del menu");
+            Log.d("", "Click sobre la opcion 1 del menu_pedidos");
         }
         if(item.getItemId() == R.id.item2) {
-            Log.d("", "Click sobre la opcion 2 del menu");
+            Log.d("", "Click sobre la opcion 2 del menu_pedidos");
         }
 
         return super.onOptionsItemSelected(item);

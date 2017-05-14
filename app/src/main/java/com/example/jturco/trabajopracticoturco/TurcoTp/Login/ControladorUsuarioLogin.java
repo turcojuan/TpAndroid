@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.MainActivityMenuPedido;
 import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.MainActivityRegistro;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -100,8 +101,8 @@ public class ControladorUsuarioLogin {
 
         Log.d("Verificacion","Ok preferences");
         //Aca en lugar de ir a Registro tiene que ir al Menu de productos
-        Intent in = new Intent(act,MainActivityRegistro.class);
-        act.startActivity(in);
+       Intent in = new Intent(act,MainActivityMenuPedido.class);
+       act.startActivity(in);
     }
     else {
         Log.d("No prefe","No prefe");}

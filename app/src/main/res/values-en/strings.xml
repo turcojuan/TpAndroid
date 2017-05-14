@@ -19,7 +19,7 @@
     <string name="edit_apellido">Turco</string>
     <string name="edit_dni">DNI/CUIL</string>
     <string name="edit_reingrese">Reenter the Key</string>
-    <string name="dialog_registro">Unable to generate user</string>
+    <string name="dialog_registro">Unable to generate user, user already exists</string>
     <string name="dialog_registro_titulo">Alert</string>
     <string name="dialog_registro_btn">Accept</string>
     <string name="dialog_login">The user is invalid</string>

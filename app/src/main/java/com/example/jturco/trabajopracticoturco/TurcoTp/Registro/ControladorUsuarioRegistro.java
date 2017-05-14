@@ -42,7 +42,7 @@ public class ControladorUsuarioRegistro {
                 if (password.getText().toString().equals(reingrese.getText().toString())) {
                     Log.d("Log3", "Log3");
 
-                    UserRegistrado userRegis = new UserRegistrado(nombre.toString(),apellido.toString(),dni.toString(),mail.toString(),password.toString());
+                    UserRegistrado userRegis = new UserRegistrado(nombre.getText().toString(),apellido.getText().toString(),dni.getText().toString(),mail.getText().toString(),password.getText().toString());
 
                     Log.d("se creo user", "se creo user");
 
@@ -53,6 +53,8 @@ public class ControladorUsuarioRegistro {
                         //for(int i=0; i<modelUser.getListaUsersRegis().size(); i++)
                           for(UserRegistrado userExistente : modelUser.getListaUsersRegis())
                         {
+                           // Log.d("DniExistente",userExistente.dni);
+                           // Log.d("DniCargado",userRegis.dni);
                             if(userRegis.equals(userExistente))
                             {
                                 Log.d("Ya existe el user","Ya existe el user");
