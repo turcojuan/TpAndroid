@@ -88,16 +88,15 @@ public class MainActivity extends AppCompatActivity {
     {MiDialogoLogin dialog = new MiDialogoLogin();
         dialog.show(getSupportFragmentManager(), "dialogoLogin");}
 
-   /* @Override
+   @Override
     public boolean onCreateOptionsMenu(Menu menu_pedidos)
     {
 
-        getMenuInflater().inflate(R.menu_pedidos.menu_pedidos,menu_pedidos);
+        getMenuInflater().inflate(R.menu.menu_pedidos,menu_pedidos);
 
         return true;
 
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -109,6 +108,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }*/
+    }
 
 }

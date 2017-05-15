@@ -9,35 +9,27 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:paddingBottom="20dp"
         android:orientation="horizontal">
 
 
         <LinearLayout android:orientation="vertical"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
 
-        <TextView
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:text="Pidiendo ..."
-            android:id="@+id/tvPidiendo"
-            android:textSize="25dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"/>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Enviar pedido"
-                android:id="@+id/tvEnviarPedidoMenuP"
+            <TextView
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="Mi Pedido"
+                android:id="@+id/txtMiPedido"
+                android:textSize="27dp"
                 android:layout_marginLeft="15dp"
-                android:textSize="15dp"
-                />
+                android:layout_marginTop="10dp"/>
 
-    </LinearLayout>
+
+
+        </LinearLayout>
         <LinearLayout android:orientation="vertical"
 
             android:layout_width="match_parent"
@@ -53,16 +45,16 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="Importe estimado:"
-                    android:id="@+id/tvImporte"
+                    android:id="@+id/tvImporteMiPedido"
                     android:textSize="20dp"
                     android:layout_marginLeft="30dp"
                     android:layout_gravity="center"
-                    android:layout_weight="0.02" />
+                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="$0,00"
-                    android:id="@+id/tvImporteEstimadoMenuP"
+                    android:id="@+id/tvImporteEstimadoMiPedido"
                     android:textSize="25dp"
                     android:layout_marginTop="10dp"
                     />
@@ -70,30 +62,14 @@
 
             </LinearLayout>
 
-            <LinearLayout android:orientation="horizontal"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Elementos selecionados:"
-                    android:id="@+id/tvElem"
-                    android:textSize="15dp"
-                    android:layout_marginLeft="15dp"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:id="@+id/tvElemSelecMenuP"
-                    android:textSize="15dp"
-                    android:layout_marginLeft="15dp"
-                    />
-            </LinearLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enviar pedido"
+                android:id="@+id/btnEnviarPedidoMiPedido"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="right"
+                />
 
         </LinearLayout>
 
@@ -105,7 +81,7 @@
         android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/listMenuPedido"
+            android:id="@+id/listMiPedido"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical" />
@@ -113,5 +89,3 @@
 
     </LinearLayout>
 </LinearLayout>
-
-

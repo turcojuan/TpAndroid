@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/item1"
+    <item android:id="@+id/verPedidoActual"
+        android:title="Ver Pedido Actual"
+        />
+    <item android:id="@+id/CerrarSesionPedidos"
         android:title="Cerrar Sesion"
         />
-    <item android:id="@+id/item2"
-        android:title="Opcion2"
-        />
-
 </menu>
