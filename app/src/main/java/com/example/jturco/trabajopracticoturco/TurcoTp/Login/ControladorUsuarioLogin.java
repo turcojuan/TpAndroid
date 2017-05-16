@@ -78,7 +78,10 @@ public class ControladorUsuarioLogin {
                 }
 
                 //Intent al menu de productos.
-                comprobarLogin.setText(comprobacionLogin.toString());
+                //comprobarLogin.setText(comprobacionLogin.toString());
+                Intent in = new Intent(vistaLogin.getActividad(),MainActivityMenuPedido.class);
+                vistaLogin.getActividad().startActivity(in);
+
             }
             else
             {   //Mostrar dialogo

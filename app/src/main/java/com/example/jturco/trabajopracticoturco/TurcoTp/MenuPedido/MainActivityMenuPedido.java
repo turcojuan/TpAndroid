@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.Menu;
@@ -15,11 +17,14 @@ import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.ListenerRegistar
 import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.ModelUsuarioRegistro;
 import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.VistaUsuarioRegistro;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by jturco on 14/05/2017.
  */
 
-public class MainActivityMenuPedido extends AppCompatActivity {
+public class MainActivityMenuPedido extends AppCompatActivity implements IOnItemClickMenuPedido {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,23 @@ public class MainActivityMenuPedido extends AppCompatActivity {
 
         //ActionBar actionBar = getSupportActionBar();
         //actionBar.hide();
+
+        RecyclerView rv = (RecyclerView) this.findViewById(R.id.listMenuPedido);
+
+        List<ModelProductoMenu> listaMenuProd = new ArrayList<ModelProductoMenu>();
+        listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
+        listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
+        listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
+        listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
+        listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
+        listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
+        listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
+        listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
+
+        RecyclerView.LayoutManager layoutMang = new LinearLayoutManager(this);
+        rv.setLayoutManager(layoutMang); // Como presenta la información
+        MyAdapterMenuPedido myAdapter = new MyAdapterMenuPedido(listaMenuProd,this); //this pq implemento IOnItem... y lo agregue en el constructor
+        rv.setAdapter(myAdapter);
 
     }
 
@@ -56,5 +78,10 @@ public class MainActivityMenuPedido extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
     }
 }
