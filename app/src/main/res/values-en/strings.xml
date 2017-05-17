@@ -25,4 +25,7 @@
     <string name="dialog_login">The user is invalid</string>
     <string name="dialog_login_titulo">Alert</string>
     <string name="dialog_login_btn">Accept</string>
+    <string name="dialog_menu_pedido">An item must be selected to continue</string>
+    <string name="dialog_menu_pedido_titulo">Alert</string>
+    <string name="dialog_menu_pedido_btn">Accept</string>
 </resources>

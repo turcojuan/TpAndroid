@@ -26,4 +26,7 @@
 <string name="dialog_login">El usuario no es válido</string>
 <string name="dialog_login_titulo">Alerta</string>
 <string name="dialog_login_btn">Aceptar</string>
+<string name="dialog_menu_pedido">Se debe seleccionar un item para continuar</string>
+<string name="dialog_menu_pedido_titulo">Alerta</string>
+<string name="dialog_menu_pedido_btn">Aceptar</string>
 </resources>

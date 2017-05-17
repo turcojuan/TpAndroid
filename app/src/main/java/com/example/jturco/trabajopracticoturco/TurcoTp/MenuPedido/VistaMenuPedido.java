@@ -57,6 +57,8 @@ public class VistaMenuPedido implements IEnviarPedido {
             actividad.startActivity(in);
         } else {
             Log.d("Dialog", "Dialog no hay elemento selecionados");
+                actividad.mostrarDialogo();
+
         }
     }
         //Llamar a metodo del Controler para importe que reciba el item desde activity

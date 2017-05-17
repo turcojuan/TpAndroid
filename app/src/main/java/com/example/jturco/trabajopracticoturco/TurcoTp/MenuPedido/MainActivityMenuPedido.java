@@ -16,6 +16,7 @@ import android.widget.Toolbar;
 import com.example.jturco.trabajopracticoturco.R;
 import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.ControladorUsuarioRegistro;
 import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.ListenerRegistar;
+import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.MiDialogoRegistro;
 import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.ModelUsuarioRegistro;
 import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.VistaUsuarioRegistro;
 
@@ -107,4 +108,8 @@ public class MainActivityMenuPedido extends AppCompatActivity implements IOnItem
            listaMenuProdSeleccionados.add(itemMenuProdSel);
 
     }
+    public void mostrarDialogo()
+    {MiDialogoMenuPedido dialog = new MiDialogoMenuPedido();
+        dialog.show(getSupportFragmentManager(), "dialogoMenuPedido");}
+
 }
