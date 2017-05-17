@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.Menu;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.example.jturco.trabajopracticoturco.R;
@@ -25,7 +27,7 @@ import java.util.List;
  */
 
 public class MainActivityMenuPedido extends AppCompatActivity implements IOnItemClickMenuPedido {
-
+  private  List<ModelProductoMenu> listaMenuProd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +41,9 @@ public class MainActivityMenuPedido extends AppCompatActivity implements IOnItem
         //ActionBar actionBar = getSupportActionBar();
         //actionBar.hide();
 
-        RecyclerView rv = (RecyclerView) this.findViewById(R.id.listMenuPedido);
+      RecyclerView rv = (RecyclerView) this.findViewById(R.id.listMenuPedido);
 
-        List<ModelProductoMenu> listaMenuProd = new ArrayList<ModelProductoMenu>();
+        listaMenuProd = new ArrayList<ModelProductoMenu>();
         listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
         listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
         listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
@@ -82,6 +84,23 @@ public class MainActivityMenuPedido extends AppCompatActivity implements IOnItem
 
     @Override
     public void onItemClick(int position) {
+            //ACA ES DONDE SE EJECUTA CUANDO SE DA CLICK AL ITEM.
+        //Llamar aca a un metodo de vista para que set a Importe el valor del item seleccionado
+        Log.d("Se hizo click el item"+position,"RVlist");
+        Button btnAgregar = (Button) this.findViewById(R.id.btnAgregarMenuPedido);
+        TextView importe= (TextView) this.findViewById(R.id.tvImporteEstimadoMenuP);
+        String precioActual = importe.getText().toString();
+        String precioSelecionado =listaMenuProd.get(position).getPrecio().toString();
+
+
+            double imp1 = Double.parseDouble(precioActual);
+            double imp2 = Double.parseDouble(precioSelecionado);
+            double sumaTotal = imp1 + imp2;
+            String resultado = String.valueOf(sumaTotal);
+            importe.setText(resultado);
+
+        // Tengo que hacer esta suma en el btn de
+        //Tengo que ver si puedo poner el btn en el item
 
     }
 }
