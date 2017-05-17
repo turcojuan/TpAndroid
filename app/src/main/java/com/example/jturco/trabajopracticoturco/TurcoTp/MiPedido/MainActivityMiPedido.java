@@ -43,7 +43,7 @@ public class MainActivityMiPedido extends AppCompatActivity implements IOnItemCl
         this.listaMenuProdSel.add(new ModelProductoMenu("Menu Juan",100.00));
         this.listaMenuProdSel.add(new ModelProductoMenu("Menu test",200.00));
 
-        VistaMiPedido miVistaMiPedido= new VistaMiPedido(this); //Le paso la instancia de la activity_main
+        miVistaMiPedido= new VistaMiPedido(this); //Le paso la instancia de la activity_main
         ControladorMiPedido miControladorMiPedido = new ControladorMiPedido((new ListenerEnviarMiPedido(miVistaMiPedido))); // le pasas mi vista porque implementa IMostrarResultado
         miVistaMiPedido.setMiControlador(miControladorMiPedido);
         miVistaMiPedido.setImporteEstimado();
@@ -86,7 +86,7 @@ public class MainActivityMiPedido extends AppCompatActivity implements IOnItemCl
         if(item.getItemId() == R.id.LimpiarPedido) {
             listaMenuProdSel.clear();
             myAdapter.notifyDataSetChanged(); // para refrescar.
-            //miVistaMiPedido.vaciarImporteEstimado();
+            miVistaMiPedido.vaciarImporteEstimado();
         }
         else if(item.getItemId() == R.id.CerrarSesionMisPedidos) {
             this.finish();
@@ -113,12 +113,14 @@ public class MainActivityMiPedido extends AppCompatActivity implements IOnItemCl
         Log.d("Se hizo click el item"+position,"RVlist");
 
         //Tengo que hacer algo para que reste cada elemento que se elimina.
-
+        miVistaMiPedido.restarImporte(listaMenuProdSel.get(position));
         Log.d("Elimino a:",listaMenuProdSel.get(position).getNombre().toString());
         this.eliminaItemSelecionadoMiPedido(listaMenuProdSel.get(position));
         myAdapter.notifyDataSetChanged();// para refrescar el rv
     }
 
+
+   //esto pasarlo a la vista
     public void eliminaItemSelecionadoMiPedido(ModelProductoMenu itemMenuProdSel)
     {
         listaMenuProdSel.remove(itemMenuProdSel);

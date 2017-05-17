@@ -1,8 +1,11 @@
 package com.example.jturco.trabajopracticoturco.TurcoTp.MiPedido;
 
+import android.content.Intent;
 import android.util.Log;
+import android.view.Gravity;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.jturco.trabajopracticoturco.R;
 
@@ -48,7 +51,28 @@ public class VistaMiPedido implements IEnviarMiPedido {
 
     @Override
     public void mostrarPedidoSelecionado() {
-        Log.d("MiPedido","Se presiono en Enviar Pedido")
+        Log.d("MiPedido","Se presiono en Enviar Pedido");
+
+        this.calcularImporteMiPedido();
+        Toast toast0 = Toast.makeText(actividad,"El pedido fue enviado", Toast.LENGTH_SHORT);
+        toast0.setGravity(Gravity.CENTER,0,400);
+        toast0.show();
+
+
+
+        String elementosSeleccionados= String.valueOf(listaMenuProdSel.size());
+        String importeTotal= tvImporteEstimadoMiPedido.getText().toString();
+        Toast toast1 = Toast.makeText(actividad,"Total de item seleccionados: "+elementosSeleccionados+"\n"+"Importe Total: $"+importeTotal , Toast.LENGTH_LONG);
+        toast1.setGravity(Gravity.CENTER,0,450);
+        toast1.show();
+
+        listaMenuProdSel.clear();
+
+
+        Intent in = new Intent(actividad, MainActivityMenuPedido.class);
+        actividad.startActivity(in);
+
+
         //Mostrar Dialogo.
         ;
     }
@@ -73,6 +97,16 @@ public class VistaMiPedido implements IEnviarMiPedido {
         resultado = String.valueOf(importeActual);
         return resultado;
         //tvImporteEstimadoMiPedido.setText(resultado);
+    }
+
+    public void restarImporte(ModelProductoMenu itemMenuProdSel)
+    {String importeActual = tvImporteEstimadoMiPedido.getText().toString();
+
+        double imp1 = Double.parseDouble(importeActual);
+        double imp2 = Double.parseDouble(itemMenuProdSel.getPrecio().toString());
+        double sumaTotal = imp1 - imp2;
+        String resultado = String.valueOf(sumaTotal);
+        tvImporteEstimadoMiPedido.setText(resultado);
     }
 
     }
