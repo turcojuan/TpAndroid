@@ -1,5 +1,7 @@
 package com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -14,8 +16,10 @@ import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.example.jturco.trabajopracticoturco.R;
+import com.example.jturco.trabajopracticoturco.TurcoTp.Login.MainActivity;
 import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.ControladorUsuarioRegistro;
 import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.ListenerRegistar;
+import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.MainActivityRegistro;
 import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.MiDialogoRegistro;
 import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.ModelUsuarioRegistro;
 import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.VistaUsuarioRegistro;
@@ -31,6 +35,8 @@ public class MainActivityMenuPedido extends AppCompatActivity implements IOnItem
   private  List<ModelProductoMenu> listaMenuProd;
   private  List<ModelProductoMenu> listaMenuProdSeleccionados=new ArrayList<ModelProductoMenu>();
   private  VistaMenuPedido miVistaMenuPedido;
+    private static final String MAIL = "mail";
+    private static final String PASSWORD = "pass";
 
 
     @Override
@@ -47,8 +53,8 @@ public class MainActivityMenuPedido extends AppCompatActivity implements IOnItem
 
         listaMenuProd = new ArrayList<ModelProductoMenu>();
         listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
-        listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
-        listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
+        listaMenuProd.add(new ModelProductoMenu("Hamburgesa",70.00));
+        listaMenuProd.add(new ModelProductoMenu("Milanesas",80.00));
         listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
         listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
         listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
@@ -79,7 +85,19 @@ public class MainActivityMenuPedido extends AppCompatActivity implements IOnItem
             Log.d("", "Click sobre la verPedidoActual1 del menu_pedidos");
         }
         if(item.getItemId() == R.id.CerrarSesionPedidos) {
-            Log.d("", "Click sobre la opcion CerrarSesionPedidos del menu_pedidos");
+
+            this.finish();
+
+
+            //Borrar los datos de preference
+            SharedPreferences miShPref = getSharedPreferences("miConfig", MODE_PRIVATE); // es clave valor
+
+           SharedPreferences.Editor editor = miShPref.edit();
+           editor.clear(); // limpio las preferences
+           editor.commit();
+            Log.d("Borro Prefe","Borro Prefe");
+
+
         }
 
         return super.onOptionsItemSelected(item);

@@ -43,7 +43,7 @@ public class VistaUsuarioLogin implements IIngresar {
         editPassword=(EditText) actividad.findViewById(R.id.editTextPass);
         btnRegistrar= (Button) actividad.findViewById(R.id.btnRegis);
         chRecuerdame= (CheckBox) actividad.findViewById(R.id.checkRecordarme);
-        comprobarLogin= (Button) actividad.findViewById(R.id.btnComprobacionLogin);
+
 
     }
 

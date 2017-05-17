@@ -23,8 +23,8 @@ public class MyViewHolderMiPedido extends RecyclerView.ViewHolder implements Vie
 
     public MyViewHolderMiPedido(View itemView, IOnItemClickMiPedido listenerMiP) {
         super(itemView);
-        tvNombreMiProducto = (TextView) itemView.findViewById(R.id.tvNombreMenuProducto);
-        tvPrecioMiProducto = (TextView) itemView.findViewById(R.id.tvPrecioMenuProducto);
+        tvNombreMiProducto = (TextView) itemView.findViewById(R.id.tvNombreMiProducto);
+        tvPrecioMiProducto = (TextView) itemView.findViewById(R.id.tvPrecioMiProducto);
         btnEliminarMiPedido= (Button) itemView.findViewById(R.id.btnEliminarMiPedido);
         this.listenerMiPedido =listenerMiP;
         btnEliminarMiPedido.setOnClickListener(this); // le paso el litener al btn en lugar que al item entero

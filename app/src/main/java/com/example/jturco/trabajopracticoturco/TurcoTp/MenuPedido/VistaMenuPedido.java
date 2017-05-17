@@ -61,7 +61,6 @@ public class VistaMenuPedido implements IEnviarPedido {
             //Enviar la listaDeMenuSeleccionado a la otra pantalla, mediante un metodo del controler.
 
             Intent in = new Intent(actividad, MainActivityMiPedido.class);
-            //in.putExtra("miLista",actividad.getListaMenuProdSeleccionados());
             actividad.startActivity(in);
         } else {
             Log.d("Dialog", "Dialog no hay elemento selecionados");

@@ -1,5 +1,6 @@
 package com.example.jturco.trabajopracticoturco.TurcoTp.MiPedido;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.jturco.trabajopracticoturco.R;
+import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.ControladorMenuPedido;
 import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.IOnItemClickMenuPedido;
 import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.MainActivityMenuPedido;
 import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.ModelProductoMenu;
@@ -26,23 +28,27 @@ import java.util.List;
 public class MainActivityMiPedido extends AppCompatActivity implements IOnItemClickMiPedido {
     private List<ModelProductoMenu> listaMenuProdSel;
     MyAdapterMiPedido myAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mi_pedido);
 
-       /* ModelUsuarioRegistro miModeloRegistro= new ModelUsuarioRegistro();
-        VistaUsuarioRegistro miVistaRegistro = new VistaUsuarioRegistro(this); //Le paso la instancia de la activity_main
-        ControladorUsuarioRegistro miControladorRegistro = new ControladorUsuarioRegistro((new ListenerRegistar(miVistaRegistro))); // le pasas mi vista porque implementa IMostrarResultado
-        miVistaRegistro.setMiControlador(miControladorRegistro);*/
 
-        MainActivityMenuPedido actMenuPedido = new MainActivityMenuPedido();
+        VistaMiPedido miVistaMiPedido= new VistaMiPedido(this); //Le paso la instancia de la activity_main
+        ControladorMiPedido miControladorMiPedido = new ControladorMiPedido((new ListenerEnviarMiPedido(miVistaMiPedido))); // le pasas mi vista porque implementa IMostrarResultado
+        miVistaMiPedido.setMiControlador(miControladorMiPedido);
+
+     /*   MainActivityMenuPedido actMenuPedido = new MainActivityMenuPedido();
         this.listaMenuProdSel=actMenuPedido.getListaMenuProdSeleccionados(); // Aca tengo todos lo items selecionados en la anterior pantalla.
+        */
 
-
+        //Hago esto para probar.
+        this.listaMenuProdSel= new ArrayList<ModelProductoMenu>();
+        this.listaMenuProdSel.add(new ModelProductoMenu("Menu Juan",100.00));
 
         //Log.d("La list cargada",listaMenuProdSeleccionados.get(0).getNombre());
-        Log.d("La list cargada",String.valueOf(listaMenuProdSel.size()));
+        //Log.d("La list cargada",String.valueOf(listaMenuProdSel.size()));
         RecyclerView rvMiPedido = (RecyclerView) this.findViewById(R.id.listMiPedido);
         RecyclerView.LayoutManager layoutMang = new LinearLayoutManager(this);
         rvMiPedido.setLayoutManager(layoutMang); // Como presenta la información
@@ -50,6 +56,10 @@ public class MainActivityMiPedido extends AppCompatActivity implements IOnItemCl
         rvMiPedido.setAdapter(myAdapter);
 
         }
+
+    public List<ModelProductoMenu> getListaMenuProdSel() {
+        return listaMenuProdSel;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu_mis_pedidos)
@@ -67,10 +77,22 @@ public class MainActivityMiPedido extends AppCompatActivity implements IOnItemCl
             Log.d("", "Click sobre la opcion EnviarElPedidoActual del menu_mis_pedidos");
         }
         if(item.getItemId() == R.id.LimpiarPedido) {
-            Log.d("", "Click sobre la opcion LimpiarPedido del menu_mis_pedidos");
+            listaMenuProdSel.clear();
+            myAdapter.notifyDataSetChanged(); // para refrescar.
         }
         else if(item.getItemId() == R.id.CerrarSesionMisPedidos) {
-            Log.d("", "Click sobre la opcion CerrarSesionMisPedidos del menu_mis_pedidos");
+            this.finish();
+
+
+            //Borrar los datos de preference
+            //pasar al intent del login y hacerle finish().
+            SharedPreferences miShPref = getSharedPreferences("miConfig", MODE_PRIVATE); // es clave valor
+
+            SharedPreferences.Editor editor = miShPref.edit();
+            editor.clear(); // limpio las preferences
+            editor.commit();
+            Log.d("Borro Prefe","Borro Prefe");
+
         }
 
         return super.onOptionsItemSelected(item);
