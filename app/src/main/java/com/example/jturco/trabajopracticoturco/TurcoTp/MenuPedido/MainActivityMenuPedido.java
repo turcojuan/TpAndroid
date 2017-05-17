@@ -28,18 +28,17 @@ import java.util.List;
 
 public class MainActivityMenuPedido extends AppCompatActivity implements IOnItemClickMenuPedido {
   private  List<ModelProductoMenu> listaMenuProd;
+  private  List<ModelProductoMenu> listaMenuProdSeleccionados =new ArrayList<ModelProductoMenu>();
+  private  VistaMenuPedido miVistaMenuPedido;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_pedido);
 
-       /* ModelUsuarioRegistro miModeloRegistro= new ModelUsuarioRegistro();
-        VistaUsuarioRegistro miVistaRegistro = new VistaUsuarioRegistro(this); //Le paso la instancia de la activity_main
-        ControladorUsuarioRegistro miControladorRegistro = new ControladorUsuarioRegistro((new ListenerRegistar(miVistaRegistro))); // le pasas mi vista porque implementa IMostrarResultado
-        miVistaRegistro.setMiControlador(miControladorRegistro);*/
+        miVistaMenuPedido = new VistaMenuPedido(this);
+        ControladorMenuPedido miControladorMenuPedido = new ControladorMenuPedido((new ListenerEnviarPedido(miVistaMenuPedido))); // le pasas mi vista porque implementa IEnviarPedido
+        miVistaMenuPedido.setMiControlador(miControladorMenuPedido);
 
-        //ActionBar actionBar = getSupportActionBar();
-        //actionBar.hide();
 
       RecyclerView rv = (RecyclerView) this.findViewById(R.id.listMenuPedido);
 
@@ -59,6 +58,7 @@ public class MainActivityMenuPedido extends AppCompatActivity implements IOnItem
         rv.setAdapter(myAdapter);
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu_pedidos)
@@ -86,21 +86,25 @@ public class MainActivityMenuPedido extends AppCompatActivity implements IOnItem
     public void onItemClick(int position) {
             //ACA ES DONDE SE EJECUTA CUANDO SE DA CLICK AL ITEM.
         //Llamar aca a un metodo de vista para que set a Importe el valor del item seleccionado
+
+        //Esto quizas tenga que manejarlo entre la vista y el controller.
+
         Log.d("Se hizo click el item"+position,"RVlist");
-        Button btnAgregar = (Button) this.findViewById(R.id.btnAgregarMenuPedido);
-        TextView importe= (TextView) this.findViewById(R.id.tvImporteEstimadoMenuP);
-        String precioActual = importe.getText().toString();
-        String precioSelecionado =listaMenuProd.get(position).getPrecio().toString();
+        miVistaMenuPedido.calcularImporte(listaMenuProd.get(position));
+        miVistaMenuPedido.calcularElementosSel();
+        //Llamo a un metodo para agregar el item a una nueva lista
+            this.agregaItemSelecionadoMiPedido(listaMenuProd.get(position));
+            Log.d("Agregoooo a:",listaMenuProd.get(position).getNombre().toString());
 
+    }
 
-            double imp1 = Double.parseDouble(precioActual);
-            double imp2 = Double.parseDouble(precioSelecionado);
-            double sumaTotal = imp1 + imp2;
-            String resultado = String.valueOf(sumaTotal);
-            importe.setText(resultado);
+    public List<ModelProductoMenu> getListaMenuProdSeleccionados() {
+        return listaMenuProdSeleccionados;
+    }
 
-        // Tengo que hacer esta suma en el btn de
-        //Tengo que ver si puedo poner el btn en el item
+    public void agregaItemSelecionadoMiPedido(ModelProductoMenu itemMenuProdSel)
+    {
+           listaMenuProdSeleccionados.add(itemMenuProdSel);
 
     }
 }

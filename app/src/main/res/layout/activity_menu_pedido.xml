@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Enviar pedido"
-                android:id="@+id/tvEnviarPedidoMenuP"
+                android:id="@+id/btnEnviarPedidoMenuP"
                 android:layout_marginLeft="15dp"
                 android:textSize="15dp"
                 />
