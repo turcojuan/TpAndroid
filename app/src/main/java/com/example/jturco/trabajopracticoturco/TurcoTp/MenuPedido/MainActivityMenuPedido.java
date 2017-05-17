@@ -29,8 +29,10 @@ import java.util.List;
 
 public class MainActivityMenuPedido extends AppCompatActivity implements IOnItemClickMenuPedido {
   private  List<ModelProductoMenu> listaMenuProd;
-  private  List<ModelProductoMenu> listaMenuProdSeleccionados =new ArrayList<ModelProductoMenu>();
+  private  List<ModelProductoMenu> listaMenuProdSeleccionados=new ArrayList<ModelProductoMenu>();
   private  VistaMenuPedido miVistaMenuPedido;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,26 +90,22 @@ public class MainActivityMenuPedido extends AppCompatActivity implements IOnItem
             //ACA ES DONDE SE EJECUTA CUANDO SE DA CLICK AL ITEM.
         //Llamar aca a un metodo de vista para que set a Importe el valor del item seleccionado
 
-        //Esto quizas tenga que manejarlo entre la vista y el controller.
-
         Log.d("Se hizo click el item"+position,"RVlist");
         miVistaMenuPedido.calcularImporte(listaMenuProd.get(position));
         miVistaMenuPedido.calcularElementosSel();
         //Llamo a un metodo para agregar el item a una nueva lista
-            this.agregaItemSelecionadoMiPedido(listaMenuProd.get(position));
+            listaMenuProdSeleccionados.add(listaMenuProd.get(position));
             Log.d("Agregoooo a:",listaMenuProd.get(position).getNombre().toString());
 
     }
 
     public List<ModelProductoMenu> getListaMenuProdSeleccionados() {
+        Log.d("Carga:",String.valueOf(listaMenuProdSeleccionados.size()));
         return listaMenuProdSeleccionados;
-    }
-
-    public void agregaItemSelecionadoMiPedido(ModelProductoMenu itemMenuProdSel)
-    {
-           listaMenuProdSeleccionados.add(itemMenuProdSel);
 
     }
+
+
     public void mostrarDialogo()
     {MiDialogoMenuPedido dialog = new MiDialogoMenuPedido();
         dialog.show(getSupportFragmentManager(), "dialogoMenuPedido");}

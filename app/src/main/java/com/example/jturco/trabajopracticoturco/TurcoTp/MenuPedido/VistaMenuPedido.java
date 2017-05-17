@@ -11,6 +11,8 @@ import com.example.jturco.trabajopracticoturco.R;
 import com.example.jturco.trabajopracticoturco.TurcoTp.MiPedido.MainActivityMiPedido;
 import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.MainActivityRegistro;
 
+import java.util.List;
+
 
 /**
  * Created by jturco on 14/05/2017.
@@ -46,6 +48,11 @@ public class VistaMenuPedido implements IEnviarPedido {
 
 
     }
+    public List<ModelProductoMenu> getListaMenuSel()
+    {
+        return actividad.getListaMenuProdSeleccionados();
+    }
+
 
     @Override
     public void enviarPedidoMenuSelecionado() {
@@ -54,6 +61,7 @@ public class VistaMenuPedido implements IEnviarPedido {
             //Enviar la listaDeMenuSeleccionado a la otra pantalla, mediante un metodo del controler.
 
             Intent in = new Intent(actividad, MainActivityMiPedido.class);
+            //in.putExtra("miLista",actividad.getListaMenuProdSeleccionados());
             actividad.startActivity(in);
         } else {
             Log.d("Dialog", "Dialog no hay elemento selecionados");
