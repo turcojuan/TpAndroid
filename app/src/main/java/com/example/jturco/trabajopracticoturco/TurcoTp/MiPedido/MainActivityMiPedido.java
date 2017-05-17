@@ -28,24 +28,31 @@ import java.util.List;
 public class MainActivityMiPedido extends AppCompatActivity implements IOnItemClickMiPedido {
     private List<ModelProductoMenu> listaMenuProdSel;
     MyAdapterMiPedido myAdapter;
+    VistaMiPedido miVistaMiPedido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mi_pedido);
-
-
-        VistaMiPedido miVistaMiPedido= new VistaMiPedido(this); //Le paso la instancia de la activity_main
-        ControladorMiPedido miControladorMiPedido = new ControladorMiPedido((new ListenerEnviarMiPedido(miVistaMiPedido))); // le pasas mi vista porque implementa IMostrarResultado
-        miVistaMiPedido.setMiControlador(miControladorMiPedido);
-
-     /*   MainActivityMenuPedido actMenuPedido = new MainActivityMenuPedido();
+          /*   MainActivityMenuPedido actMenuPedido = new MainActivityMenuPedido();
         this.listaMenuProdSel=actMenuPedido.getListaMenuProdSeleccionados(); // Aca tengo todos lo items selecionados en la anterior pantalla.
         */
 
         //Hago esto para probar.
         this.listaMenuProdSel= new ArrayList<ModelProductoMenu>();
         this.listaMenuProdSel.add(new ModelProductoMenu("Menu Juan",100.00));
+        this.listaMenuProdSel.add(new ModelProductoMenu("Menu test",200.00));
+
+        VistaMiPedido miVistaMiPedido= new VistaMiPedido(this); //Le paso la instancia de la activity_main
+        ControladorMiPedido miControladorMiPedido = new ControladorMiPedido((new ListenerEnviarMiPedido(miVistaMiPedido))); // le pasas mi vista porque implementa IMostrarResultado
+        miVistaMiPedido.setMiControlador(miControladorMiPedido);
+        miVistaMiPedido.setImporteEstimado();
+
+
+        //Hago esto para probar.
+        this.listaMenuProdSel= new ArrayList<ModelProductoMenu>();
+        this.listaMenuProdSel.add(new ModelProductoMenu("Menu Juan",100.00));
+        this.listaMenuProdSel.add(new ModelProductoMenu("Menu test",200.00));
 
         //Log.d("La list cargada",listaMenuProdSeleccionados.get(0).getNombre());
         //Log.d("La list cargada",String.valueOf(listaMenuProdSel.size()));
@@ -79,6 +86,7 @@ public class MainActivityMiPedido extends AppCompatActivity implements IOnItemCl
         if(item.getItemId() == R.id.LimpiarPedido) {
             listaMenuProdSel.clear();
             myAdapter.notifyDataSetChanged(); // para refrescar.
+            //miVistaMiPedido.vaciarImporteEstimado();
         }
         else if(item.getItemId() == R.id.CerrarSesionMisPedidos) {
             this.finish();
@@ -103,13 +111,12 @@ public class MainActivityMiPedido extends AppCompatActivity implements IOnItemCl
         //ACA ES DONDE SE EJECUTA CUANDO SE DA CLICK AL ITEM.
 
         Log.d("Se hizo click el item"+position,"RVlist");
-        //miVistaMenuPedido.calcularImporte(listaMenuProd.get(position));
-       // miVistaMenuPedido.calcularElementosSel();
-        //Llamo a un metodo para agregar el item a una nueva lista
+
+        //Tengo que hacer algo para que reste cada elemento que se elimina.
+
+        Log.d("Elimino a:",listaMenuProdSel.get(position).getNombre().toString());
         this.eliminaItemSelecionadoMiPedido(listaMenuProdSel.get(position));
         myAdapter.notifyDataSetChanged();// para refrescar el rv
-        Log.d("Agregoooo a:",listaMenuProdSel.get(position).getNombre().toString());
-
     }
 
     public void eliminaItemSelecionadoMiPedido(ModelProductoMenu itemMenuProdSel)

@@ -62,6 +62,8 @@ public class VistaMenuPedido implements IEnviarPedido {
 
             Intent in = new Intent(actividad, MainActivityMiPedido.class);
             actividad.startActivity(in);
+
+
         } else {
             Log.d("Dialog", "Dialog no hay elemento selecionados");
                 actividad.mostrarDialogo();

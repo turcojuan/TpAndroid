@@ -83,6 +83,9 @@ public class MainActivityMenuPedido extends AppCompatActivity implements IOnItem
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.verPedidoActual) {
             Log.d("", "Click sobre la verPedidoActual1 del menu_pedidos");
+            //Igualar funcionalidad de EnviarPedido
+            miVistaMenuPedido.enviarPedidoMenuSelecionado();
+
         }
         if(item.getItemId() == R.id.CerrarSesionPedidos) {
 
