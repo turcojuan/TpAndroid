@@ -25,7 +25,7 @@ public class MyAdapterMenuPedido  extends RecyclerView.Adapter<MyViewHolderMenuP
 
     @Override
     public MyViewHolderMenuPedido onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout_menu_producto,parent,false); //Te permite agarrar el xml y lo pasa a un objeto java de tipo view
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout_menu_producto,parent,false); //Te permite agarrar el xml y lo pasa a un objeto java de tipo view, tranformo a view
         MyViewHolderMenuPedido vb= new MyViewHolderMenuPedido(v,listenerRvMenuPedido); //le paso lo que recibo por el constructor
 
         Log.d("OnCreate","Es:toy:: en OnCreate");

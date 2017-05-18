@@ -19,7 +19,7 @@ import java.util.List;
  */
 
 public class VistaMenuPedido implements IEnviarPedido {
-
+    public static List<ModelProductoMenu> listaItemSeleccionados;
     private MainActivityMenuPedido actividad;
     private Button btnEnviarPedido;
     private ControladorMenuPedido miControladorMenuPedido;
@@ -59,6 +59,9 @@ public class VistaMenuPedido implements IEnviarPedido {
 
         if (actividad.getListaMenuProdSeleccionados().size() != 0) {
             //Enviar la listaDeMenuSeleccionado a la otra pantalla, mediante un metodo del controler.
+
+            //Seteo el static aca, asi toma todos los cambios.
+            listaItemSeleccionados=actividad.getListaMenuProdSeleccionados(); //Este atrib static lo llamo desde la otra Activity.
 
             Intent in = new Intent(actividad, MainActivityMiPedido.class);
             actividad.startActivity(in);

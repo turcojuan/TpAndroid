@@ -39,11 +39,15 @@ public class MainActivityMiPedido extends AppCompatActivity implements IOnItemCl
           /*   MainActivityMenuPedido actMenuPedido = new MainActivityMenuPedido();
         this.listaMenuProdSel=actMenuPedido.getListaMenuProdSeleccionados(); // Aca tengo todos lo items selecionados en la anterior pantalla.
         */
+        this.listaMenuProdSel=VistaMenuPedido.listaItemSeleccionados;
+        Log.d("STATICtest",String.valueOf(listaMenuProdSel.size()));
+        Log.d("STATICtest1",this.listaMenuProdSel.get(0).getNombre());
 
-        //Hago esto para probar.
+
+       /* //Hago esto para probar.
         this.listaMenuProdSel= new ArrayList<ModelProductoMenu>();
         this.listaMenuProdSel.add(new ModelProductoMenu("Menu Juan",100.00));
-        this.listaMenuProdSel.add(new ModelProductoMenu("Menu test",200.00));
+        this.listaMenuProdSel.add(new ModelProductoMenu("Menu test",200.00)); */
 
         miVistaMiPedido= new VistaMiPedido(this); //Le paso la instancia de la activity_main
         miControladorMiPedido = new ControladorMiPedido((new ListenerEnviarMiPedido(miVistaMiPedido))); // le pasas mi vista porque implementa IMostrarResultado
@@ -51,10 +55,7 @@ public class MainActivityMiPedido extends AppCompatActivity implements IOnItemCl
         miVistaMiPedido.setImporteEstimado();
 
 
-        //Hago esto para probar.
-        this.listaMenuProdSel= new ArrayList<ModelProductoMenu>();
-        this.listaMenuProdSel.add(new ModelProductoMenu("Menu Juan",100.00));
-        this.listaMenuProdSel.add(new ModelProductoMenu("Menu test",200.00));
+
 
         //Log.d("La list cargada",listaMenuProdSeleccionados.get(0).getNombre());
         //Log.d("La list cargada",String.valueOf(listaMenuProdSel.size()));
