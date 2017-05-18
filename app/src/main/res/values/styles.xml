@@ -8,5 +8,21 @@
         <item name="colorAccent">@color/colorAccent</item>
 
     </style>
+    <style name="MiTema" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:colorButtonNormal">@color/colorFondoBtn</item>
+        <item name="android:colorBackground">@color/colorFondoMiTema</item>
+    </style>
+
+    <style name="MiBtnAdd" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:buttonStyle">@drawable/btn_add</item>
+    </style>
+
+    <style name="MiTemaItemRv" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:shape">rectangle</item>
+    </style>
+
 
 </resources>

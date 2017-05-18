@@ -7,8 +7,9 @@
     <LinearLayout android:orientation="horizontal"
 
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#9AC2FE">
+        android:layout_height="80dp"
+        android:background="@drawable/borde_redondo"
+        >
 
         <ImageView
             android:layout_width="60dp"

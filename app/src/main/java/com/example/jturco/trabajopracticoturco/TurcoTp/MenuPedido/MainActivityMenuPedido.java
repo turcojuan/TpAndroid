@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuView;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -55,16 +56,18 @@ public class MainActivityMenuPedido extends AppCompatActivity implements IOnItem
         listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
         listaMenuProd.add(new ModelProductoMenu("Hamburgesa",70.00));
         listaMenuProd.add(new ModelProductoMenu("Milanesas",80.00));
+        listaMenuProd.add(new ModelProductoMenu("Lomo",90.00));
         listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
         listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
         listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
-        listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
-        listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
+
 
         RecyclerView.LayoutManager layoutMang = new LinearLayoutManager(this);
         rv.setLayoutManager(layoutMang); // Como presenta la información
         MyAdapterMenuPedido myAdapter = new MyAdapterMenuPedido(listaMenuProd,this); //this pq implemento IOnItem... y lo agregue en el constructor
         rv.setAdapter(myAdapter);
+        rv.addItemDecoration(new DividerItemDecoration(this.getBaseContext(),1));
+
 
     }
 

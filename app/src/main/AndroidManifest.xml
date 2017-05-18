@@ -17,9 +17,11 @@
         </activity>
         <activity android:name=".TurcoTp.Registro.MainActivityRegistro">
         </activity>
-         <activity android:name=".TurcoTp.MenuPedido.MainActivityMenuPedido">
+         <activity android:name=".TurcoTp.MenuPedido.MainActivityMenuPedido"
+             android:theme="@style/MiTema">
     </activity>
-        <activity android:name=".TurcoTp.MiPedido.MainActivityMiPedido">
+        <activity android:name=".TurcoTp.MiPedido.MainActivityMiPedido"
+            android:theme="@style/MiTema">
         </activity>
 
 

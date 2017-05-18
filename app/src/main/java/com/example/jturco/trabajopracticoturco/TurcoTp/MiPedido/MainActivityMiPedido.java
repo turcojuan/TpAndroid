@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -64,6 +65,7 @@ public class MainActivityMiPedido extends AppCompatActivity implements IOnItemCl
         rvMiPedido.setLayoutManager(layoutMang); // Como presenta la información
         myAdapter = new MyAdapterMiPedido(listaMenuProdSel,this); //this pq implemento IOnItem... y lo agregue en el constructor
         rvMiPedido.setAdapter(myAdapter);
+        rvMiPedido.addItemDecoration(new DividerItemDecoration(this.getBaseContext(),1));
 
         }
 
