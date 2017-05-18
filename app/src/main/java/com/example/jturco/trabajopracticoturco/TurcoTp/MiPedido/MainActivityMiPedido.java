@@ -14,6 +14,7 @@ import com.example.jturco.trabajopracticoturco.R;
 import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.ControladorMenuPedido;
 import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.IOnItemClickMenuPedido;
 import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.MainActivityMenuPedido;
+import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.MiDialogoMenuPedido;
 import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.ModelProductoMenu;
 import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.MyAdapterMenuPedido;
 import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.VistaMenuPedido;
@@ -27,9 +28,10 @@ import java.util.List;
 
 public class MainActivityMiPedido extends AppCompatActivity implements IOnItemClickMiPedido {
     private List<ModelProductoMenu> listaMenuProdSel;
+
     MyAdapterMiPedido myAdapter;
     VistaMiPedido miVistaMiPedido;
-
+    ControladorMiPedido miControladorMiPedido;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +46,7 @@ public class MainActivityMiPedido extends AppCompatActivity implements IOnItemCl
         this.listaMenuProdSel.add(new ModelProductoMenu("Menu test",200.00));
 
         miVistaMiPedido= new VistaMiPedido(this); //Le paso la instancia de la activity_main
-        ControladorMiPedido miControladorMiPedido = new ControladorMiPedido((new ListenerEnviarMiPedido(miVistaMiPedido))); // le pasas mi vista porque implementa IMostrarResultado
+        miControladorMiPedido = new ControladorMiPedido((new ListenerEnviarMiPedido(miVistaMiPedido))); // le pasas mi vista porque implementa IMostrarResultado
         miVistaMiPedido.setMiControlador(miControladorMiPedido);
         miVistaMiPedido.setImporteEstimado();
 
@@ -65,7 +67,7 @@ public class MainActivityMiPedido extends AppCompatActivity implements IOnItemCl
         }
 
     public List<ModelProductoMenu> getListaMenuProdSel() {
-        return listaMenuProdSel;
+        return this.listaMenuProdSel;
     }
 
     @Override
@@ -82,6 +84,8 @@ public class MainActivityMiPedido extends AppCompatActivity implements IOnItemCl
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.EnviarElPedidoActual) {
             Log.d("", "Click sobre la opcion EnviarElPedidoActual del menu_mis_pedidos");
+            miVistaMiPedido.mostrarPedidoSelecionado();
+
         }
         if(item.getItemId() == R.id.LimpiarPedido) {
             listaMenuProdSel.clear();
@@ -113,7 +117,7 @@ public class MainActivityMiPedido extends AppCompatActivity implements IOnItemCl
         Log.d("Se hizo click el item"+position,"RVlist");
 
         //Tengo que hacer algo para que reste cada elemento que se elimina.
-        miVistaMiPedido.restarImporte(listaMenuProdSel.get(position));
+        miControladorMiPedido.restarImporte(listaMenuProdSel.get(position),miVistaMiPedido.getTvImporteEstimadoMiPedido());
         Log.d("Elimino a:",listaMenuProdSel.get(position).getNombre().toString());
         this.eliminaItemSelecionadoMiPedido(listaMenuProdSel.get(position));
         myAdapter.notifyDataSetChanged();// para refrescar el rv
@@ -123,7 +127,11 @@ public class MainActivityMiPedido extends AppCompatActivity implements IOnItemCl
    //esto pasarlo a la vista
     public void eliminaItemSelecionadoMiPedido(ModelProductoMenu itemMenuProdSel)
     {
-        listaMenuProdSel.remove(itemMenuProdSel);
+        this.listaMenuProdSel.remove(itemMenuProdSel);
 
     }
+
+    public void mostrarDialogoSinItem()
+    {MiDialogoMenuPedido dialog = new MiDialogoMenuPedido();
+        dialog.show(getSupportFragmentManager(), "dialogoMenuPedido");}
 }
