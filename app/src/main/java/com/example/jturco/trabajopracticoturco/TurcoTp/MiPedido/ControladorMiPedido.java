@@ -6,6 +6,7 @@ import android.widget.TextView;
 import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.ListenerEnviarPedido;
 import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.MainActivityMenuPedido;
 import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.ModelProductoMenu;
+import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.VistaMenuPedido;
 
 import java.util.List;
 
@@ -55,6 +56,8 @@ public class ControladorMiPedido {
         double sumaTotal = imp1 - imp2;
         String resultado = String.valueOf(sumaTotal);
         tvImporteEstimadoMiPedido.setText(resultado);
+        VistaMenuPedido.importeTotalMiPedido=resultado; //Para que actualice Importe en Menu Pedido.
+
     }
 
 }

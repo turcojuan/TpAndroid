@@ -12,6 +12,7 @@ import com.example.jturco.trabajopracticoturco.R;
 import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.MainActivityMenuPedido;
 import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.MiDialogoMenuPedido;
 import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.ModelProductoMenu;
+import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.VistaMenuPedido;
 
 import java.util.List;
 
@@ -53,6 +54,7 @@ public class VistaMiPedido implements IEnviarMiPedido {
     public void vaciarImporteEstimado()
     {
         tvImporteEstimadoMiPedido.setText("0.00");
+        VistaMenuPedido.importeTotalMiPedido="0.00"; //Actualizo importe en Menu Pedido.
     }
 
 
@@ -93,6 +95,9 @@ public class VistaMiPedido implements IEnviarMiPedido {
            tvImporteEstimadoMiPedido.setText(miControladorMiPedido.calcularImporteMiPedido(actividad.getListaMenuProdSel(),tvImporteEstimadoMiPedido));
     }
 
+}
+
+
 //Pase esta lógica al Controller.
    /* public String calcularImporteMiPedido()
     {String resultado=null;
@@ -121,4 +126,3 @@ public class VistaMiPedido implements IEnviarMiPedido {
         tvImporteEstimadoMiPedido.setText(resultado);
     } */
 
-    }

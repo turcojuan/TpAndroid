@@ -28,13 +28,18 @@ public class ControladorMenuPedido {
     }
 
     public String importeResultado(ModelProductoMenu itemMenuProd, TextView importe)
-    {String precioActual = importe.getText().toString();
-        String precioSelecionado =itemMenuProd.getPrecio().toString();
-        double imp1 = Double.parseDouble(precioActual);
-        double imp2 = Double.parseDouble(precioSelecionado);
-        double sumaTotal = imp1 + imp2;
-        String resultado = String.valueOf(sumaTotal);
-    return resultado;}
+    {
+     //Aca tendria que calcular esto solo si el importe static que traigo de MiPedido el null.
+
+            String precioActual = importe.getText().toString();
+            String precioSelecionado = itemMenuProd.getPrecio().toString();
+            double imp1 = Double.parseDouble(precioActual);
+            double imp2 = Double.parseDouble(precioSelecionado);
+            double sumaTotal = imp1 + imp2;
+            String resultado = String.valueOf(sumaTotal);
+
+        return resultado;
+ }
 
 
     public String cantElementosSel (TextView elementosSel){

@@ -54,6 +54,9 @@ public class MainActivityMiPedido extends AppCompatActivity implements IOnItemCl
         miControladorMiPedido = new ControladorMiPedido((new ListenerEnviarMiPedido(miVistaMiPedido))); // le pasas mi vista porque implementa IMostrarResultado
         miVistaMiPedido.setMiControlador(miControladorMiPedido);
         miVistaMiPedido.setImporteEstimado();
+       // miVistaMiPedido.setImporteEstimadoMenuPedido();
+
+
 
 
 
@@ -131,6 +134,7 @@ public class MainActivityMiPedido extends AppCompatActivity implements IOnItemCl
     public void eliminaItemSelecionadoMiPedido(ModelProductoMenu itemMenuProdSel)
     {
         this.listaMenuProdSel.remove(itemMenuProdSel);
+
 
     }
 

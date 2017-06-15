@@ -38,7 +38,7 @@ public class MyViewHolderMenuPedido extends RecyclerView.ViewHolder implements V
 
     @Override
     public void onClick(View view) {
-        listenerMenuPedido.onItemClick(position); // este onItemClick lo implemento en el activity
+        listenerMenuPedido.onItemClick(position); // este onItemClick lo implemento en el activity, el paso position que lo seteo desde el bind del Adapter
 
 
     }

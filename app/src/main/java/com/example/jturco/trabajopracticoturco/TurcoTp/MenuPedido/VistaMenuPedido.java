@@ -25,6 +25,7 @@ public class VistaMenuPedido implements IEnviarPedido {
     private ControladorMenuPedido miControladorMenuPedido;
     TextView importe;
     TextView elementosSel;
+    public static String importeTotalMiPedido;
 
     public MainActivityMenuPedido getActividad() {
         return actividad;
@@ -86,4 +87,18 @@ public class VistaMenuPedido implements IEnviarPedido {
      //Llamar a metodo del controler para los elementos.
     elementosSel.setText(miControladorMenuPedido.cantElementosSel(elementosSel));
     }
+    public void ActualizarImporte(){
+        if(VistaMenuPedido.importeTotalMiPedido != null)
+        {
+            importe.setText(VistaMenuPedido.importeTotalMiPedido);
+        }}
+    public void ActualizarElementosSel(){
+        //if(VistaMenuPedido.importeTotalMiPedido== null)
+        //{
+          //  elementosSel.setText(VistaMenuPedido.importeTotalMiPedido);
+        //}
+
+
+    }
+
 }
