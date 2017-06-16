@@ -79,7 +79,7 @@ public class MainActivityMenuPedido extends AppCompatActivity implements IOnItem
         Log.d("onResume","onResume");
         if(VistaMenuPedido.listaItemSeleccionados!= null) {
 
-           miVistaMenuPedido.importe.setText(VistaMenuPedido.importeTotalMiPedido); //me traigo el importe (static desde miPedido).
+           miVistaMenuPedido.importe.setText(VistaMenuPedido.importeTotalMiPedido); //me traigo el importe (static) desde miPedido.
             miVistaMenuPedido.elementosSel.setText(String.valueOf(VistaMenuPedido.listaItemSeleccionados.size()));
 
         }
