@@ -87,18 +87,6 @@ public class VistaMenuPedido implements IEnviarPedido {
      //Llamar a metodo del controler para los elementos.
     elementosSel.setText(miControladorMenuPedido.cantElementosSel(elementosSel));
     }
-    public void ActualizarImporte(){
-        if(VistaMenuPedido.importeTotalMiPedido != null)
-        {
-            importe.setText(VistaMenuPedido.importeTotalMiPedido);
-        }}
-    public void ActualizarElementosSel(){
-        //if(VistaMenuPedido.importeTotalMiPedido== null)
-        //{
-          //  elementosSel.setText(VistaMenuPedido.importeTotalMiPedido);
-        //}
 
-
-    }
 
 }

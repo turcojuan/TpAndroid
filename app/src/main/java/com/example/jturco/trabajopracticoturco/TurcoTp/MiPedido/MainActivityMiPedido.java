@@ -91,12 +91,16 @@ public class MainActivityMiPedido extends AppCompatActivity implements IOnItemCl
         if(item.getItemId() == R.id.EnviarElPedidoActual) {
             Log.d("", "Click sobre la opcion EnviarElPedidoActual del menu_mis_pedidos");
             miVistaMiPedido.mostrarPedidoSelecionado();
+            //Vacio static
+            VistaMenuPedido.listaItemSeleccionados= null;
 
         }
         if(item.getItemId() == R.id.LimpiarPedido) {
             listaMenuProdSel.clear();
             myAdapter.notifyDataSetChanged(); // para refrescar.
             miVistaMiPedido.vaciarImporteEstimado();
+            //Vacio el static
+            VistaMenuPedido.listaItemSeleccionados= null;
         }
         else if(item.getItemId() == R.id.CerrarSesionMisPedidos) {
             this.finish();

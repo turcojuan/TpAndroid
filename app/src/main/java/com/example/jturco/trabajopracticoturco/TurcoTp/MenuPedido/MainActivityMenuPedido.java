@@ -67,7 +67,7 @@ public class MainActivityMenuPedido extends AppCompatActivity implements IOnItem
         MyAdapterMenuPedido myAdapter = new MyAdapterMenuPedido(listaMenuProd,this); //this pq implemento IOnItem... y lo agregue en el constructor
         rv.setAdapter(myAdapter);
         rv.addItemDecoration(new DividerItemDecoration(this.getBaseContext(),1));
-        miVistaMenuPedido.ActualizarImporte();
+
 
     }
 

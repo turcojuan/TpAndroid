@@ -79,6 +79,8 @@ public class VistaMiPedido implements IEnviarMiPedido {
         toast1.show();
 
         actividad.getListaMenuProdSel().clear();
+            //Limpio el static
+            VistaMenuPedido.listaItemSeleccionados= null;
         Log.d("Elementos borrar", String.valueOf(actividad.getListaMenuProdSel().size()));
 
         Intent in = new Intent(actividad, MainActivityMenuPedido.class);
