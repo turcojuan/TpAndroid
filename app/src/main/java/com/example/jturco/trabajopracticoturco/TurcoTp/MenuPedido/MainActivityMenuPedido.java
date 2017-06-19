@@ -3,6 +3,8 @@ package com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuView;
@@ -18,6 +20,7 @@ import android.widget.Toolbar;
 
 import com.example.jturco.trabajopracticoturco.R;
 import com.example.jturco.trabajopracticoturco.TurcoTp.Login.MainActivity;
+import com.example.jturco.trabajopracticoturco.TurcoTp.Login.MiHiloUsuarios;
 import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.ControladorUsuarioRegistro;
 import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.ListenerRegistar;
 import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.MainActivityRegistro;
@@ -32,7 +35,7 @@ import java.util.List;
  * Created by jturco on 14/05/2017.
  */
 
-public class MainActivityMenuPedido extends AppCompatActivity implements IOnItemClickMenuPedido {
+public class MainActivityMenuPedido extends AppCompatActivity implements IOnItemClickMenuPedido,Handler.Callback{
   private  List<ModelProductoMenu> listaMenuProd;
   private  List<ModelProductoMenu> listaMenuProdSeleccionados=new ArrayList<ModelProductoMenu>();
   private  VistaMenuPedido miVistaMenuPedido;
@@ -49,8 +52,17 @@ public class MainActivityMenuPedido extends AppCompatActivity implements IOnItem
         ControladorMenuPedido miControladorMenuPedido = new ControladorMenuPedido((new ListenerEnviarPedido(miVistaMenuPedido))); // le pasas mi vista porque implementa IEnviarPedido
         miVistaMenuPedido.setMiControlador(miControladorMenuPedido);
 
+        //Handler
+        Handler h = new Handler(this);
+        Thread miHiloProductos = new Thread(new MiHiloProductosMenu(h));
+
+        miHiloProductos.start();
+
 
       RecyclerView rv = (RecyclerView) this.findViewById(R.id.listMenuPedido);
+
+
+        //aca tengo que mandar lo que recibo por la Api.
 
         listaMenuProd = new ArrayList<ModelProductoMenu>();
         listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
@@ -67,6 +79,7 @@ public class MainActivityMenuPedido extends AppCompatActivity implements IOnItem
         MyAdapterMenuPedido myAdapter = new MyAdapterMenuPedido(listaMenuProd,this); //this pq implemento IOnItem... y lo agregue en el constructor
         rv.setAdapter(myAdapter);
         rv.addItemDecoration(new DividerItemDecoration(this.getBaseContext(),1));
+
 
 
     }
@@ -147,4 +160,16 @@ public class MainActivityMenuPedido extends AppCompatActivity implements IOnItem
     {MiDialogoMenuPedido dialog = new MiDialogoMenuPedido();
         dialog.show(getSupportFragmentManager(), "dialogoMenuPedido");}
 
+    @Override
+    public boolean handleMessage(Message message) {
+        List<ModelProductoMenu> list = (List<ModelProductoMenu>) message.obj;
+
+        for (ModelProductoMenu p: list) {
+
+            Log.d("MiTestGetProd",p.getNombre());
+            //listaMenuProd.add(p);
+        }
+
+        return true;
+    }
 }

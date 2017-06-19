@@ -13,11 +13,21 @@ public class ModelProductoMenu {
         return nombre;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public Double getPrecio() {
         return precio;
     }
 
-    public ModelProductoMenu(String nombre,Double precio)
+    public ModelProductoMenu()
+    {}
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
+    public ModelProductoMenu(String nombre, Double precio)
     {
         this.nombre=nombre;
         this.precio=precio;

@@ -107,13 +107,18 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
 
     @Override
     public boolean handleMessage(Message message) {
-      //  List<ModelUsuarioLogin> list = (List<ModelUsuarioLogin>) message.obj;
+        List<ModelUsuarioLogin> listaUsers = (List<ModelUsuarioLogin>) message.obj;
+        Log.d("Llego mi mail", "Llego mi mail");
+        //String mail=null;
+        for (ModelUsuarioLogin u: listaUsers) {
 
-        String mail=null;
-       // for (ModelUsuarioLogin u: list) {
-             Log.d("Llego mi mail","Llego mi mail");
-        mail= (String) message.obj;
-        Log.d("MailJuan",mail);
+
+            Log.d("MailsUsers",u.getMail());
+            //aca tengo que agregar a la lista de users.
+
+        }
+       // mail= (String) message.obj;
+
         //
 
         return true;

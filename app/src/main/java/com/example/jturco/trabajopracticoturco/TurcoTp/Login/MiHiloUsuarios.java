@@ -43,6 +43,7 @@ public class MiHiloUsuarios implements Runnable {
             msg.obj= JsonParseUsuarios.parcear(miStr);
 
             miHandler.sendMessage(msg);
+
             Log.d("miHiloEjecuto1","miHiloEjecuto1");
         }
         catch(IOException e){}
