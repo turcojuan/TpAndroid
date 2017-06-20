@@ -43,7 +43,6 @@ public class MiHiloProductosMenu implements Runnable {
             //esto tendria que asignarlo a msg.obj
             Log.d("miHiloEjecuto2Productos","miHiloEjecuto2Productos");
             msg.obj= JsonParseProductoMenu.parcear(miStr);
-
             miHandler.sendMessage(msg);
             Log.d("miHiloEjecuto1Productos","miHiloEjecuto1Productos");
         }

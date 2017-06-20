@@ -1,6 +1,9 @@
 package com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido;
 
 import android.content.Intent;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -26,6 +29,7 @@ public class VistaMenuPedido implements IEnviarPedido {
     TextView importe;
     TextView elementosSel;
     public static String importeTotalMiPedido;
+   // private RecyclerView rv;
 
     public MainActivityMenuPedido getActividad() {
         return actividad;
@@ -46,7 +50,7 @@ public class VistaMenuPedido implements IEnviarPedido {
         Button btnAgregar = (Button) actividad.findViewById(R.id.btnAgregarMenuPedido);
         importe= (TextView) actividad.findViewById(R.id.tvImporteEstimadoMenuP);
         elementosSel = (TextView) actividad.findViewById(R.id.tvElemSelecMenuP);
-
+        //rv = (RecyclerView) this.actividad.findViewById(R.id.listMenuPedido);
 
     }
     public List<ModelProductoMenu> getListaMenuSel()
@@ -54,6 +58,17 @@ public class VistaMenuPedido implements IEnviarPedido {
         return actividad.getListaMenuProdSeleccionados();
     }
 
+    //Insntacio rv
+   /* public void instanciarRv() {
+        //lo instancio y lo voy a buscar en el constructor.
+        RecyclerView.LayoutManager layoutMang = new LinearLayoutManager(this.actividad);
+        rv.setLayoutManager(layoutMang); // Como presenta la información
+        Log.d("List", "Se esta por enviar");
+        MyAdapterMenuPedido myAdapter = new MyAdapterMenuPedido(this.actividad.getListaMenuProd(), this.actividad); //"a" pq implemento IOnItem... y lo agregue en el constructor
+        rv.setAdapter(myAdapter);
+        rv.addItemDecoration(new DividerItemDecoration(this.actividad.getBaseContext(), 1));
+
+    }*/
 
     @Override
     public void enviarPedidoMenuSelecionado() {
@@ -87,6 +102,5 @@ public class VistaMenuPedido implements IEnviarPedido {
      //Llamar a metodo del controler para los elementos.
     elementosSel.setText(miControladorMenuPedido.cantElementosSel(elementosSel));
     }
-
 
 }

@@ -11,7 +11,7 @@ import java.util.List;
  * Created by jturco on 14/05/2017.
  */
 
-public class ControladorMenuPedido {
+public class ControladorMenuPedido  {
 
     ListenerEnviarPedido miListenerEnviarPedido;
     MainActivityMenuPedido actividadMenuPedido;
@@ -19,6 +19,8 @@ public class ControladorMenuPedido {
     public ControladorMenuPedido(ListenerEnviarPedido env) {
 
         this.miListenerEnviarPedido = env;
+
+
 
     }
 

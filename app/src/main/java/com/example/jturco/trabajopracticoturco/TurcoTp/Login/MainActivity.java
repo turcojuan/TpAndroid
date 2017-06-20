@@ -21,12 +21,15 @@ import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.ModelProductoM
 import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.MainActivityRegistro;
 import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.MiDialogoRegistro;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements Handler.Callback {
 
     private static final String MAIL = "mail";
     private static final String PASSWORD = "pass";
+
+    private List<ModelUsuarioLogin> listaUsersFinal = new ArrayList<ModelUsuarioLogin>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,19 +110,15 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
 
     @Override
     public boolean handleMessage(Message message) {
-        List<ModelUsuarioLogin> listaUsers = (List<ModelUsuarioLogin>) message.obj;
+        listaUsersFinal = (List<ModelUsuarioLogin>) message.obj;
         Log.d("Llego mi mail", "Llego mi mail");
+        Log.d("ListaUsers",listaUsersFinal.get(0).getNombre());
+        Log.d("ListaUsers",listaUsersFinal.get(1).getNombre());
+
         //String mail=null;
-        for (ModelUsuarioLogin u: listaUsers) {
-
-
-            Log.d("MailsUsers",u.getMail());
             //aca tengo que agregar a la lista de users.
-
-        }
+           // Log.d("ListaUsers",listaUsers.get(1).getNombre());
        // mail= (String) message.obj;
-
-        //
 
         return true;
     }

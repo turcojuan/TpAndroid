@@ -23,6 +23,8 @@ public class MyViewHolderMenuPedido extends RecyclerView.ViewHolder implements V
         super(itemView);
         tvNombreMenuProducto = (TextView) itemView.findViewById(R.id.tvNombreMenuProducto);
         tvPrecioMenuProducto = (TextView) itemView.findViewById(R.id.tvPrecioMenuProducto);
+        //aca agregar la imagen
+
         tvImporteEstimadoMenuP= (TextView) itemView.findViewById(R.id.tvImporteEstimadoMenuP);
         btnAgregarMenuPedido= (Button) itemView.findViewById(R.id.btnAgregarMenuPedido);
         this.listenerMenuPedido =listenerMenuP;

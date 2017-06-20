@@ -36,35 +36,35 @@ import java.util.List;
  */
 
 public class MainActivityMenuPedido extends AppCompatActivity implements IOnItemClickMenuPedido,Handler.Callback{
-  private  List<ModelProductoMenu> listaMenuProd;
+  private  List<ModelProductoMenu> listaMenuProd= new ArrayList<ModelProductoMenu>();
   private  List<ModelProductoMenu> listaMenuProdSeleccionados=new ArrayList<ModelProductoMenu>();
   private  VistaMenuPedido miVistaMenuPedido;
+    //private RecyclerView rv;
     private static final String MAIL = "mail";
     private static final String PASSWORD = "pass";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Handler h = new Handler(this);
+        Thread miHiloProductos = new Thread(new MiHiloProductosMenu(h));
+
+
+
+        miHiloProductos.start();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_pedido);
+
+
+        //miHiloProductos.setPriority(10);
 
         miVistaMenuPedido = new VistaMenuPedido(this);
         ControladorMenuPedido miControladorMenuPedido = new ControladorMenuPedido((new ListenerEnviarPedido(miVistaMenuPedido))); // le pasas mi vista porque implementa IEnviarPedido
         miVistaMenuPedido.setMiControlador(miControladorMenuPedido);
 
-        //Handler
-        Handler h = new Handler(this);
-        Thread miHiloProductos = new Thread(new MiHiloProductosMenu(h));
-
-        miHiloProductos.start();
-
-
-      RecyclerView rv = (RecyclerView) this.findViewById(R.id.listMenuPedido);
-
-
         //aca tengo que mandar lo que recibo por la Api.
 
-        listaMenuProd = new ArrayList<ModelProductoMenu>();
+        /*listaMenuProd = new ArrayList<ModelProductoMenu>();
         listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
         listaMenuProd.add(new ModelProductoMenu("Hamburgesa",70.00));
         listaMenuProd.add(new ModelProductoMenu("Milanesas",80.00));
@@ -72,14 +72,8 @@ public class MainActivityMenuPedido extends AppCompatActivity implements IOnItem
         listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
         listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
         listaMenuProd.add(new ModelProductoMenu("Pizza",60.00));
-
-
-        RecyclerView.LayoutManager layoutMang = new LinearLayoutManager(this);
-        rv.setLayoutManager(layoutMang); // Como presenta la información
-        MyAdapterMenuPedido myAdapter = new MyAdapterMenuPedido(listaMenuProd,this); //this pq implemento IOnItem... y lo agregue en el constructor
-        rv.setAdapter(myAdapter);
-        rv.addItemDecoration(new DividerItemDecoration(this.getBaseContext(),1));
-
+*/
+        //Probe insntaciando el rv en la vista. (en el handMsg llamo a un metodo de la vista para instnaciar)
 
 
     }
@@ -160,16 +154,34 @@ public class MainActivityMenuPedido extends AppCompatActivity implements IOnItem
     {MiDialogoMenuPedido dialog = new MiDialogoMenuPedido();
         dialog.show(getSupportFragmentManager(), "dialogoMenuPedido");}
 
+
     @Override
     public boolean handleMessage(Message message) {
-        List<ModelProductoMenu> list = (List<ModelProductoMenu>) message.obj;
+        this.listaMenuProd= (List<ModelProductoMenu>) message.obj;
+        Log.d("SeEjecutoHand","SeEjecutoHand");
+        Log.d("listaMenuProd",String.valueOf(listaMenuProd.size()));
 
-        for (ModelProductoMenu p: list) {
+
+        for (ModelProductoMenu p: listaMenuProd) {
 
             Log.d("MiTestGetProd",p.getNombre());
             //listaMenuProd.add(p);
         }
 
+        //Cargar aca el rv y adapter
+        RecyclerView rv = (RecyclerView) this.findViewById(R.id.listMenuPedido);
+        RecyclerView.LayoutManager layoutMang = new LinearLayoutManager(this);
+        rv.setLayoutManager(layoutMang); // Como presenta la información
+        Log.d("List", "Se esta por enviar");
+        MyAdapterMenuPedido myAdapter = new MyAdapterMenuPedido(listaMenuProd, this); //this pq implemento IOnItem... y lo agregue en el constructor
+        rv.setAdapter(myAdapter);
+        rv.addItemDecoration(new DividerItemDecoration(this.getBaseContext(), 1));
+
+        //miVistaMenuPedido.instanciarRv(); //con lo que probe para instanciar la vista, pero me tira error de performance.
         return true;
+    }
+
+    public List<ModelProductoMenu> getListaMenuProd() {
+        return listaMenuProd;
     }
 }

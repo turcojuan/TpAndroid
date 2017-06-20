@@ -8,6 +8,8 @@ public class ModelProductoMenu {
 
     private String nombre;
     private Double precio;
+    private String imagen;
+    private String tipoMenu;
 
     public String getNombre() {
         return nombre;
@@ -33,4 +35,19 @@ public class ModelProductoMenu {
         this.precio=precio;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public String getTipoMenu() {
+        return tipoMenu;
+    }
+
+    public void setTipoMenu(String tipoMenu) {
+        this.tipoMenu = tipoMenu;
+    }
 }
