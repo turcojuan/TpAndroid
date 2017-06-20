@@ -24,8 +24,10 @@ public class JsonParseProductoMenu {
 
 
         try {
-            JSONObject jsonObject = new JSONObject(s);
-            JSONArray productos = jsonObject.getJSONArray("menuesJson");
+            //JSONObject jsonObject = new JSONObject(s);
+            //JSONArray productos = jsonObject.getJSONArray("menuesJson");
+
+            JSONArray productos = new JSONArray(s);
 
             for (int i = 0; i < productos.length(); i++) {
                 JSONObject aux = productos.getJSONObject(i);

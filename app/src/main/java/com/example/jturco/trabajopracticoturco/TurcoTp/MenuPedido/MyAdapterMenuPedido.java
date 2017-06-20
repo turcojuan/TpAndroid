@@ -35,6 +35,9 @@ public class MyAdapterMenuPedido  extends RecyclerView.Adapter<MyViewHolderMenuP
     @Override
     public void onBindViewHolder(MyViewHolderMenuPedido holder, int position) {
 
+        //Aca tengo que asignar los valores de los productos y llamar a un hilo para ir buscar la imagen
+            //esta lista que recibo se la mando en el main y la tengo llenar con el get de la API
+            //y aca le voy asignando al layout item(View holder) los atributos de mi lista.
         ModelProductoMenu pm=listaMenuPedido.get(position);
         holder.tvNombreMenuProducto.setText(pm.getNombre());  //este holder es instancia de MyViewHolder
         holder.tvPrecioMenuProducto.setText(pm.getPrecio().toString()); // esto puede traer un error

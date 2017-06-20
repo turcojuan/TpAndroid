@@ -33,7 +33,7 @@ public class MiHiloUsuarios implements Runnable {
             Conexion conexion = new Conexion(); // Quizas podria hacer un Singleton??.
 
             Log.d("miHiloEjecuto3","miHiloEjecuto3");
-             String miStr= new String(conexion.getBytesDataByGet("http://192.168.1.36:3000/usuarios/")); // devuelve un array de byte y lo paso a Str
+             String miStr= new String(conexion.getBytesDataByGet("http://192.168.1.52:3000/usuarios/")); // devuelve un array de byte y lo paso a Str
            // String miStr= new String(conexion.getBytesDataByGet("http://127.0.0.1:3000/usuarios/")); // devuelve un array y lo paso a Str
 
             //String urlApi= new String(conexion.getBytesDataByGet("http://localhost:3000/usuarios/a@a.com/clave")); // hago esto para probar.

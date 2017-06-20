@@ -15,7 +15,7 @@ import java.util.List;
 
 public class JsonParseUsuarios {
 
-    public static List<ModelUsuarioLogin> parcear (String s) { //esta url api hay que setearla desde el hilo en como ej:rta.
+    public static List<ModelUsuarioLogin> parcear (String s) {
         //aca tendria que devolver una lista?.
 
         List<ModelUsuarioLogin> listaUsuarios = new ArrayList<ModelUsuarioLogin>();
@@ -23,15 +23,18 @@ public class JsonParseUsuarios {
 
 
         try {
-            JSONObject jsonObject = new JSONObject(s);
-            JSONArray usuarios = jsonObject.getJSONArray("usuarios");
+            //JSONObject jsonObject = new JSONObject(s);
+            //JSONArray usuarios = jsonObject.getJSONArray("usuarios");
+
+            JSONArray usuarios = new JSONArray(s); //directamente lo que me devuelve la api lo convierto en Array
+
 
              for ( int i =0; i< usuarios.length() ;i++ ) {
                  JSONObject aux = usuarios.getJSONObject(i);
                  ModelUsuarioLogin u = new ModelUsuarioLogin();
                  u.setNombre(aux.getString("nombre"));
                  u.setDni(aux.getInt("dni"));
-                 u.setMail("mail");
+                 u.setMail(aux.getString("mail"));
                  listaUsuarios.add(u);
                  Log.d("ArrayUsers",u.getMail());
              }
