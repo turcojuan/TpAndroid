@@ -34,6 +34,7 @@ public class JsonParseUsuarios {
                  ModelUsuarioLogin u = new ModelUsuarioLogin();
                  u.setNombre(aux.getString("nombre"));
                  u.setDni(aux.getInt("dni"));
+                 u.setPassword(aux.getString("clave"));
                  u.setMail(aux.getString("mail"));
                  listaUsuarios.add(u);
                  Log.d("ArrayUsers",u.getMail());

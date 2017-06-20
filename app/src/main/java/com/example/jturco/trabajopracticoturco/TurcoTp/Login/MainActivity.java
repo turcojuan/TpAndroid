@@ -28,17 +28,17 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
 
     private static final String MAIL = "mail";
     private static final String PASSWORD = "pass";
+    ControladorUsuarioLogin miControladorLogin;
 
-    private List<ModelUsuarioLogin> listaUsersFinal = new ArrayList<ModelUsuarioLogin>();
 
-    @Override
+     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         //ModelUsuarioLogin miModeloLogin= new ModelUsuarioLogin();
         VistaUsuarioLogin miVistaLogin = new VistaUsuarioLogin(this); //Le paso la instancia de la activity_main
-        ControladorUsuarioLogin miControladorLogin = new ControladorUsuarioLogin((new ListenerIngresar(miVistaLogin))); // le pasas mi vista porque implementa IMostrarResultado
+        miControladorLogin = new ControladorUsuarioLogin((new ListenerIngresar(miVistaLogin))); // le pasas mi vista porque implementa IMostrarResultado
         miVistaLogin.setMiControlador(miControladorLogin);
 
         //Para esconder la barra
@@ -56,7 +56,9 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
 
     }
 
-    //Hago esto porque tiene que esta declarado aca y quiero que sea mediante clase
+
+    //Comento validacion login del primer parcial
+ /*   //Hago esto porque tiene que esta declarado aca y quiero que sea mediante clase
     public static String mailValidoUser() {
         String mailValido = "aaa@aaa.com";
         return mailValido;
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
         String passValida = "aaa123";
         return passValida;
     }
-
+*/
 
     public void guardarDatosUser(String mail, String pass)
 
@@ -110,10 +112,14 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
 
     @Override
     public boolean handleMessage(Message message) {
-        listaUsersFinal = (List<ModelUsuarioLogin>) message.obj;
+
+        //Seteo la lista del controles que uso para validar el login
+       miControladorLogin.setListaUsersFinal((List<ModelUsuarioLogin>) message.obj);
+
         Log.d("Llego mi mail", "Llego mi mail");
-        Log.d("ListaUsers",listaUsersFinal.get(0).getNombre());
-        Log.d("ListaUsers",listaUsersFinal.get(1).getNombre());
+        Log.d("ListaUsers",miControladorLogin.getListaUsersFinal().get(0).getNombre());
+        Log.d("ListaUsers",miControladorLogin.getListaUsersFinal().get(0).getPassword());
+        Log.d("ListaUsers",miControladorLogin.getListaUsersFinal().get(1).getMail());
 
         //String mail=null;
             //aca tengo que agregar a la lista de users.

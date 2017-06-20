@@ -13,6 +13,9 @@ import android.widget.EditText;
 import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.MainActivityMenuPedido;
 import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.MainActivityRegistro;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static android.content.Context.MODE_PRIVATE;
 
 /**
@@ -24,6 +27,7 @@ public class ControladorUsuarioLogin {
     ListenerIngresar miListenerIng;
     String comprobacionLogin;
     MainActivity actividad;
+    private List<ModelUsuarioLogin> listaUsersFinal = new ArrayList<ModelUsuarioLogin>();
 
     public ControladorUsuarioLogin(ListenerIngresar ing) {
 
@@ -31,19 +35,38 @@ public class ControladorUsuarioLogin {
 
     }
 
+    public List<ModelUsuarioLogin> getListaUsersFinal() {
+        return listaUsersFinal;
+    }
+
+    public void setListaUsersFinal(List<ModelUsuarioLogin> listaUsersFinal) {
+        this.listaUsersFinal = listaUsersFinal;
+    }
+
     public ListenerIngresar getMiListener() { //esto lo hago para poder hacer el btn.SetOnClick (para pasarle el listener) en la vista (Si o si hay que pasarlo en la vista).
         return miListenerIng;
     }
 
     public String validarUsuario(ModelUsuarioLogin usuarioIngresado) {
+        String resultadoLogin= "Login Incorrecto"; //por defecto resultado incorrecto.
 
-
-        if ((usuarioIngresado.getMail().toString().equals(MainActivity.mailValidoUser()) == true) && (usuarioIngresado.getPassword().toString().equals(MainActivity.passValidoUser()) == true)) {
+        ///if ((usuarioIngresado.getMail().toString().equals(MainActivity.mailValidoUser()) == true) && (usuarioIngresado.getPassword().toString().equals(MainActivity.passValidoUser()) == true)) {
             // Aca hay que agregarle un OR para que valide contra el mail y pass del array de ModelUserRegistrado, para ver si no esta cargado.
-            return "Login Correcto";
-        } else {
-            return "Login Incorrecto";
-        }
+
+
+        //Hice esta lógica, pq en el postman siempre me tiraba error ir a buscar ip:3000/usuarios/mail.
+
+        Log.d("userArrayLogica", listaUsersFinal.get(1).getMail());
+       for(ModelUsuarioLogin uLogueado: listaUsersFinal)
+       {
+           if((usuarioIngresado.getMail().toString().equals(uLogueado.getMail()))&&(usuarioIngresado.getPassword().toString().equals(uLogueado.getPassword())))
+           {
+               Log.d("Ver.LoginApi",uLogueado.getMail());
+               resultadoLogin= "Login Correcto";
+               break;
+           }
+       }
+        return resultadoLogin;
     }
 
     public void ValidaLoginCargaUser(EditText editMail, EditText editPassword, CheckBox ckRecuerdame, Button comprobarLogin, VistaUsuarioLogin vistaLogin)
@@ -103,7 +126,7 @@ public class ControladorUsuarioLogin {
     {
 
         Log.d("Verificacion","Ok preferences");
-        //Aca en lugar de ir a Registro tiene que ir al Menu de productos
+
        Intent in = new Intent(act,MainActivityMenuPedido.class);
        act.startActivity(in);
     }
