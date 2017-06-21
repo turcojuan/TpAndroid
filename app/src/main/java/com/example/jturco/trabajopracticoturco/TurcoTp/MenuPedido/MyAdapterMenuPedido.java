@@ -23,12 +23,18 @@ public class MyAdapterMenuPedido  extends RecyclerView.Adapter<MyViewHolderMenuP
     private  List<ModelProductoMenu> listaMenuPedido;
     private IOnItemClickMenuPedido listenerRvMenuPedido; // se implementa en el main.
     private Bitmap descargaImagenItem =null;
+    private Bitmap auxdescargaImagenItem; // para intentar de no ir a buscar siempre.
+
 
     public MyAdapterMenuPedido (List<ModelProductoMenu> listaMenu,IOnItemClickMenuPedido listerner)
     {
         this.listaMenuPedido=listaMenu;
         this.listenerRvMenuPedido = listerner;
+
+        //Ejecuto el metodo aca.
+
     }
+
 
     @Override
     public MyViewHolderMenuPedido onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -42,37 +48,34 @@ public class MyAdapterMenuPedido  extends RecyclerView.Adapter<MyViewHolderMenuP
     @Override
     public void onBindViewHolder(MyViewHolderMenuPedido holder, int position) {
         ModelProductoMenu pm=listaMenuPedido.get(position);
+        Handler hImagen = new Handler(this);
+        Thread miHiloImagen = new Thread(new MiHiloImagen(hImagen,pm.getImagen().toString())); //aparte le paso el String de la url donde tiene que ir a buscar la imagen de item que va a crear.
+        miHiloImagen.setPriority(Thread.MAX_PRIORITY);
+        miHiloImagen.start();
         //Aca tengo que asignar los valores de los productos y llamar a un hilo para ir buscar la imagen
             //esta lista que recibo se la mando en el main y la tengo llenar con el get de la API
             //y aca le voy asignando al layout item(View holder) los atributos de mi lista.
         //aca podria hacer el star para mi hiloImagenes.
 
-        //if(descargaImagenItem == null) {  //solo ejecuto el hilo para cargar la primera vez.
-            Handler hImagen = new Handler(this);     //el this me dice quien va a escuchar los mensajes.
+
             Log.d("StringImagen"+pm.getNombre(),pm.getImagen().toString());
+
+
             //Log.d("StringImagen","https://www.iconfinder.com/data/icons/shopping-hand-drawn-1/128/21-256.png");
-            Thread miHiloImagen = new Thread(new MiHiloImagen(hImagen,pm.getImagen().toString())); //aparte le paso el String de la url donde tiene que ir a buscar la imagen de item que va a crear.
-            miHiloImagen.setPriority(10);
-            miHiloImagen.start();
-
-       // }
-
-
+        // }
         holder.tvNombreMenuProducto.setText(pm.getNombre());  //este holder es instancia de MyViewHolder
         holder.tvPrecioMenuProducto.setText(pm.getPrecio().toString());// esto puede traer un error
-        if(descargaImagenItem!=null) //solo actualizo si se desacargo la imagen, sino muestro la por defecto
+        //if(descargaImagenItem!=null) //solo actualizo si se desacargo la imagen, sino muestro la por defecto
         //{
         Log.d("Seteo la img holder","Seteo la img holder");
-        holder.imagenItem.setImageBitmap(descargaImagenItem);
+
+        //Esto lo tengo que hacer si o si cuando termine me hilo.
+        if(descargaImagenItem!=null)  //si la imagen que traje tiene algo, recien ahi dejo de usa la por defecto.
+        {
+        holder.imagenItem.setImageBitmap(descargaImagenItem); }
            // descargaImagenItem=null; }//lo paso a null para que traiga otra imagen}
         holder.setPosition(position); // seteo la position del item para el listener.
         Log.d("OnBind","Estoy en OnBind");
-    }
-
-    @Override
-    public int getItemCount() {
-        Log.d("OnCount","Estoy en ItemCount");
-        return this.listaMenuPedido.size();
     }
 
     @Override
@@ -80,10 +83,17 @@ public class MyAdapterMenuPedido  extends RecyclerView.Adapter<MyViewHolderMenuP
         Log.d("Respuesta", "Llego la respuesta del hilo");
 
 
-                byte[] bytes = (byte[]) msg.obj;
+        byte[] bytes = (byte[]) msg.obj;
         Log.d("HiloImagenHandle", "Recibiendo bytes (imagen)");
         this.descargaImagenItem = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
 
         return true;
-            }
+    }
+    @Override
+    public int getItemCount() {
+        Log.d("OnCount","Estoy en ItemCount");
+        return this.listaMenuPedido.size();
+    }
+
+
 }

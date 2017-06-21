@@ -30,22 +30,26 @@ public class MiHiloImagen implements Runnable {
         Log.d("SeEjecutamiHiloImagen","SeEjecutamiHiloImagen");
 
         Message msg = new Message();
-        //msg.arg1 = 1;
+
 
         try {
             Log.d("miHiloEjecuto4Imagen","miHiloEjecuto4Imagen");
             Conexion conexion = new Conexion(); // Quizas podria hacer un Singleton??.
 
             Log.d("miHiloEjecuto3Imagen","miHiloEjecuto3Imagen");
+
+            if(urlImagenItem!=null) //si la url no tiene nada, que no traiga nada y que me muestre la por defecto.
+            {
             byte[] respuestaImagen = conexion.getBytesDataByGet(urlImagenItem); // devuelve un array de byte y lo paso a Str
 
             //String urlApi= new String(conexion.getBytesDataByGet("http://localhost:3000/usuarios/a@a.com/clave")); // hago esto para probar.
 
             //esto tendria que asignarlo a msg.obj
             Log.d("miHiloEjecuto2Imagen","miHiloEjecuto2Imagen");
+
             msg.obj= respuestaImagen;
             miHandler.sendMessage(msg);
-            Log.d("miHiloEjecuto1Imagen","miHiloEjecuto1Imagen");
+            Log.d("miHiloEjecuto1Imagen","miHiloEjecuto1Imagen");}
         }
         catch(IOException e){}
     }
