@@ -3,6 +3,7 @@ package com.example.jturco.trabajopracticoturco.TurcoTp.MiPedido;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.jturco.trabajopracticoturco.R;
@@ -16,6 +17,7 @@ public class MyViewHolderMiPedido extends RecyclerView.ViewHolder implements Vie
 
     TextView tvNombreMiProducto;
     TextView tvPrecioMiProducto;
+    ImageView imagenItem;
 
     Button btnEliminarMiPedido;
     private IOnItemClickMiPedido listenerMiPedido;
@@ -25,6 +27,8 @@ public class MyViewHolderMiPedido extends RecyclerView.ViewHolder implements Vie
         super(itemView);
         tvNombreMiProducto = (TextView) itemView.findViewById(R.id.tvNombreMiProducto);
         tvPrecioMiProducto = (TextView) itemView.findViewById(R.id.tvPrecioMiProducto);
+        //aca agregar la imagen
+        imagenItem= (ImageView) itemView.findViewById(R.id.imageViewMiPedido);
         btnEliminarMiPedido= (Button) itemView.findViewById(R.id.btnEliminarMiPedido);
         this.listenerMiPedido =listenerMiP;
         btnEliminarMiPedido.setOnClickListener(this); // le paso el litener al btn en lugar que al item entero

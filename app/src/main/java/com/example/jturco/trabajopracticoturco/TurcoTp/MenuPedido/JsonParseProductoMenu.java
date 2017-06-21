@@ -34,9 +34,8 @@ public class JsonParseProductoMenu {
                 ModelProductoMenu p = new ModelProductoMenu();
                 p.setNombre(aux.getString("nombre"));
                 p.setPrecio(Double.valueOf(aux.getInt("precio")));
-
-                String tipoM= aux.getString("tipoMenu");
-                String imagen=aux.getString("imagen");
+                p.setTipoMenu(aux.getString("tipoMenu"));
+                p.setImagen(aux.getString("imagen"));
 
                 // p.setMail("mail");
                 listaProductos.add(p);

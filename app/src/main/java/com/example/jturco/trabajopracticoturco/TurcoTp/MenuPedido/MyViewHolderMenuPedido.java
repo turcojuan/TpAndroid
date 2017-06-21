@@ -6,6 +6,7 @@ package com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.jturco.trabajopracticoturco.R;
@@ -16,6 +17,7 @@ public class MyViewHolderMenuPedido extends RecyclerView.ViewHolder implements V
     TextView tvPrecioMenuProducto;
     TextView tvImporteEstimadoMenuP;
     Button btnAgregarMenuPedido;
+    ImageView imagenItem;
     private IOnItemClickMenuPedido listenerMenuPedido;
     private int position;
 
@@ -25,8 +27,10 @@ public class MyViewHolderMenuPedido extends RecyclerView.ViewHolder implements V
         tvPrecioMenuProducto = (TextView) itemView.findViewById(R.id.tvPrecioMenuProducto);
         //aca agregar la imagen
 
+        imagenItem= (ImageView) itemView.findViewById(R.id.imageView);
         tvImporteEstimadoMenuP= (TextView) itemView.findViewById(R.id.tvImporteEstimadoMenuP);
         btnAgregarMenuPedido= (Button) itemView.findViewById(R.id.btnAgregarMenuPedido);
+
         this.listenerMenuPedido =listenerMenuP;
         btnAgregarMenuPedido.setOnClickListener(this); // le paso el litener al btn en lugar que al item entero
 
