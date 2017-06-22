@@ -1,6 +1,8 @@
 package com.example.jturco.trabajopracticoturco.TurcoTp.MiPedido;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.Button;
@@ -13,6 +15,7 @@ import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.MainActivityMe
 import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.MiDialogoMenuPedido;
 import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.ModelProductoMenu;
 import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.VistaMenuPedido;
+import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.MiHiloAltaUser;
 
 import java.util.List;
 
@@ -20,11 +23,14 @@ import java.util.List;
  * Created by jturco on 14/05/2017.
  */
 
-public class VistaMiPedido implements IEnviarMiPedido {
+public class VistaMiPedido implements IEnviarMiPedido,Handler.Callback {
 
     private MainActivityMiPedido actividad;
     private Button btnEnviarPedidoMiPedido;
     private ControladorMiPedido miControladorMiPedido;
+    private String elementosSeleccionados;
+    private String importeTotal;
+
     TextView tvImporteEstimadoMiPedido;
     //private List<ModelProductoMenu> listaMenuProdSel;
 
@@ -67,7 +73,17 @@ public class VistaMiPedido implements IEnviarMiPedido {
             Log.d("MiPedido", "Se presiono en Enviar Pedido");
             Log.d("Elementos", String.valueOf(actividad.getListaMenuProdSel().size()));
         miControladorMiPedido.calcularImporteMiPedido(actividad.getListaMenuProdSel(),tvImporteEstimadoMiPedido);  //Llamo al controller
-        Toast toast0 = Toast.makeText(actividad, "El pedido fue enviado", Toast.LENGTH_SHORT);
+
+           //aca llamar ejecutar el Hilo
+            //Handler
+            Handler h1 = new Handler(this);
+            Thread miHiloCargaPedido = new Thread(new MiHiloCargaPedido(h1,actividad.getListaMenuProdSel())); // le paso el user que creo con los datos validados desde la pantalla
+
+            miHiloCargaPedido.start();
+
+
+            //Esto ahora lo hago en Handler
+        /*Toast toast0 = Toast.makeText(actividad, "El pedido fue enviado", Toast.LENGTH_SHORT);
         toast0.setGravity(Gravity.CENTER, 0, 400);
         toast0.show();
 
@@ -76,8 +92,9 @@ public class VistaMiPedido implements IEnviarMiPedido {
         String importeTotal = tvImporteEstimadoMiPedido.getText().toString();
         Toast toast1 = Toast.makeText(actividad, "Total de item seleccionados: " + elementosSeleccionados + "\n" + "Importe Total: $" + importeTotal, Toast.LENGTH_LONG);
         toast1.setGravity(Gravity.CENTER, 0, 450);
-        toast1.show();
-
+        toast1.show();*/
+             elementosSeleccionados = String.valueOf(actividad.getListaMenuProdSel().size());
+             importeTotal = tvImporteEstimadoMiPedido.getText().toString();
         actividad.getListaMenuProdSel().clear();
             //Limpio el static
             VistaMenuPedido.listaItemSeleccionados= null;
@@ -95,6 +112,36 @@ public class VistaMiPedido implements IEnviarMiPedido {
 
     public void setImporteEstimado() {
            tvImporteEstimadoMiPedido.setText(miControladorMiPedido.calcularImporteMiPedido(actividad.getListaMenuProdSel(),tvImporteEstimadoMiPedido));
+    }
+    @Override
+    public boolean handleMessage(Message message) {
+
+        //Seteo la lista del controles que uso para validar el login
+        String respuestPostMensaje=(String) message.obj;
+        Log.d("RespuestaPostPedido",respuestPostMensaje.toString());
+
+        if(respuestPostMensaje.contains("correctamente"))
+        {
+            Log.d("SeEnvioPedido",respuestPostMensaje.toString());
+            Toast toast0 = Toast.makeText(actividad, "El pedido fue enviado", Toast.LENGTH_SHORT);
+            toast0.setGravity(Gravity.CENTER, 0, 400);
+            toast0.show();
+
+
+
+            Toast toast1 = Toast.makeText(actividad, "Total de item seleccionados: " + elementosSeleccionados + "\n" + "Importe Total: $" + importeTotal, Toast.LENGTH_LONG);
+            toast1.setGravity(Gravity.CENTER, 0, 450);
+            toast1.show();
+
+        } else
+        {
+            Log.d("No se pudo enviar P","No se pudo enviar P");
+
+
+        }
+
+
+        return true;
     }
 
 }

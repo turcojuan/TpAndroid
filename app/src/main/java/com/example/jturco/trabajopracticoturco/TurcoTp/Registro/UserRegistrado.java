@@ -19,6 +19,20 @@ public class UserRegistrado{
         return mail;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public String getClave() {
+        return clave;
+    }
+
+    public UserRegistrado(){}
+
     public UserRegistrado(String nombre, String apellido, String dni, String mail, String clave) {
         this.nombre = nombre;
         this.apellido = apellido;

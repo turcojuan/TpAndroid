@@ -36,14 +36,14 @@ public class MiHiloProductosMenu implements Runnable {
             Conexion conexion = new Conexion(); // Quizas podria hacer un Singleton??.
 
             Log.d("miHiloEjecuto3Productos","miHiloEjecuto3Productos");
-            String miStr= new String(conexion.getBytesDataByGet("http://192.168.1.34:3000/productos/")); // devuelve un array de byte y lo paso a Str
+            String miStr= new String(conexion.getBytesDataByGet("http://192.168.1.36:3000/productos/")); // devuelve un array de byte y lo paso a Str
 
             //String urlApi= new String(conexion.getBytesDataByGet("http://localhost:3000/usuarios/a@a.com/clave")); // hago esto para probar.
 
             //esto tendria que asignarlo a msg.obj
             Log.d("miHiloEjecuto2Productos","miHiloEjecuto2Productos");
 
-            msg.obj= JsonParseProductoMenu.parcear(miStr);
+            msg.obj= JsonParseProductoMenu.parcear(miStr); //lo que recibo como un str lo paso a JsonArray y agrago a list para enviar por el handler
             miHandler.sendMessage(msg);
             Log.d("miHiloEjecuto1Productos","miHiloEjecuto1Productos");
         }

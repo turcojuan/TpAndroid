@@ -28,6 +28,7 @@ public class ControladorUsuarioLogin {
     String comprobacionLogin;
     MainActivity actividad;
     private List<ModelUsuarioLogin> listaUsersFinal = new ArrayList<ModelUsuarioLogin>();
+    public static String userLogueado;
 
     public ControladorUsuarioLogin(ListenerIngresar ing) {
 
@@ -62,7 +63,9 @@ public class ControladorUsuarioLogin {
            if((usuarioIngresado.getMail().toString().equals(uLogueado.getMail()))&&(usuarioIngresado.getPassword().toString().equals(uLogueado.getPassword())))
            {
                Log.d("Ver.LoginApi",uLogueado.getMail());
+
                resultadoLogin= "Login Correcto";
+               ControladorUsuarioLogin.userLogueado=usuarioIngresado.getMail().toString(); // lo asigno para usarlo en el post de la api
                break;
            }
        }
