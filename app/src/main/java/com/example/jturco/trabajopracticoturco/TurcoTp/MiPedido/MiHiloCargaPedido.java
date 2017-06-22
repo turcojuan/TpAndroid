@@ -5,6 +5,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.example.jturco.trabajopracticoturco.TurcoTp.Login.ControladorUsuarioLogin;
+import com.example.jturco.trabajopracticoturco.TurcoTp.Login.MainActivity;
 import com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido.ModelProductoMenu;
 import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.ConexionPost;
 import com.example.jturco.trabajopracticoturco.TurcoTp.Registro.UserRegistrado;
@@ -37,6 +38,7 @@ public class MiHiloCargaPedido implements Runnable {
 
 
         Message msg = new Message();
+        ConexionPost conexionPost;
 
 
         try {
@@ -65,7 +67,7 @@ public class MiHiloCargaPedido implements Runnable {
             miPedidoCompleto.put("pedido", pedidos); //aca asocio el array a mi json gral.
 
 
-            ConexionPost conexionPost = new ConexionPost(miPedidoCompleto);
+             conexionPost = new ConexionPost(miPedidoCompleto);
 
             //String miStr= new String(conexion.getBytesDataByGet("http://192.168.1.34:3000/usuarios/")); // devuelve un array de byte y lo paso a Str
 
@@ -75,7 +77,7 @@ public class MiHiloCargaPedido implements Runnable {
 
             //String respuestaPost = conexionPost.postBytesData("http://192.168.1.36:3000/pedidos/nuevo");
 
-            String respuestaPost= new String(conexionPost.postBytesData("http://192.168.1.36:3000/pedidos/nuevo"));
+            String respuestaPost= new String(conexionPost.postBytesData(MainActivity.ipApi+"/pedidos/nuevo"));
             //String miStrRespAlta= new String(conexionPost.postBytesData("http://192.168.1.34:3000/usuarios/nuevo"));
             //tengo que hacer un JsonParse para evaluar la respuesta, fijarme en mi ej de la clase8
 

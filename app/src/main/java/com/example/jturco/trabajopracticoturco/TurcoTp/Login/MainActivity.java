@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
     private static final String MAIL = "mail";
     private static final String PASSWORD = "pass";
     ControladorUsuarioLogin miControladorLogin;
+    public static String ipApi="http://192.168.1.36:3000"; //Creo esto para no ir cambiando en todos los hilos.
 
 
      @Override

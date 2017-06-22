@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.example.jturco.trabajopracticoturco.TurcoTp.Login.Conexion;
 import com.example.jturco.trabajopracticoturco.TurcoTp.Login.JsonParseUsuarios;
+import com.example.jturco.trabajopracticoturco.TurcoTp.Login.MainActivity;
 
 import java.io.IOException;
 
@@ -36,7 +37,7 @@ public class MiHiloProductosMenu implements Runnable {
             Conexion conexion = new Conexion(); // Quizas podria hacer un Singleton??.
 
             Log.d("miHiloEjecuto3Productos","miHiloEjecuto3Productos");
-            String miStr= new String(conexion.getBytesDataByGet("http://192.168.1.36:3000/productos/")); // devuelve un array de byte y lo paso a Str
+            String miStr= new String(conexion.getBytesDataByGet(MainActivity.ipApi+"/productos/")); // devuelve un array de byte y lo paso a Str
 
             //String urlApi= new String(conexion.getBytesDataByGet("http://localhost:3000/usuarios/a@a.com/clave")); // hago esto para probar.
 
