@@ -3,6 +3,7 @@ package com.example.jturco.trabajopracticoturco.TurcoTp.MiPedido;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
+import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.Button;
@@ -26,7 +27,7 @@ import java.util.List;
 public class VistaMiPedido implements IEnviarMiPedido,Handler.Callback {
 
     private MainActivityMiPedido actividad;
-    private Button btnEnviarPedidoMiPedido;
+    private FloatingActionButton btnEnviarPedidoMiPedido;
     private ControladorMiPedido miControladorMiPedido;
     private String elementosSeleccionados;
     private String importeTotal;
@@ -45,7 +46,7 @@ public class VistaMiPedido implements IEnviarMiPedido,Handler.Callback {
 
     public VistaMiPedido(MainActivityMiPedido a) {
         this.actividad = a;
-        btnEnviarPedidoMiPedido = (Button) actividad.findViewById(R.id.btnEnviarPedidoMiPedido);
+        btnEnviarPedidoMiPedido = (FloatingActionButton) actividad.findViewById(R.id.btnEnviarPedidoMiPedido);
         Button btnAgregar = (Button) actividad.findViewById(R.id.btnAgregarMenuPedido);
         tvImporteEstimadoMiPedido= (TextView) actividad.findViewById(R.id.tvImporteEstimadoMiPedido);
         //listaMenuProdSel= actividad.getListaMenuProdSel();

@@ -1,6 +1,7 @@
 package com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,7 +25,7 @@ import java.util.List;
 public class VistaMenuPedido implements IEnviarPedido {
     public static List<ModelProductoMenu> listaItemSeleccionados;
     private MainActivityMenuPedido actividad;
-    private Button btnEnviarPedido;
+    private FloatingActionButton btnEnviarPedido;
     private ControladorMenuPedido miControladorMenuPedido;
     TextView importe;
     TextView elementosSel;
@@ -46,7 +47,7 @@ public class VistaMenuPedido implements IEnviarPedido {
 
     public VistaMenuPedido(MainActivityMenuPedido a) {
         this.actividad = a;
-        btnEnviarPedido = (Button) actividad.findViewById(R.id.btnEnviarPedidoMenuP);
+        btnEnviarPedido = (FloatingActionButton) actividad.findViewById(R.id.btnEnviarPedidoMenuP);
         Button btnAgregar = (Button) actividad.findViewById(R.id.btnAgregarMenuPedido);
         importe= (TextView) actividad.findViewById(R.id.tvImporteEstimadoMenuP);
         elementosSel = (TextView) actividad.findViewById(R.id.tvElemSelecMenuP);

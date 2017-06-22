@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
         Log.d("Llego mi mail", "Llego mi mail");
         Log.d("ListaUsers",miControladorLogin.getListaUsersFinal().get(0).getNombre());
         Log.d("ListaUsers",miControladorLogin.getListaUsersFinal().get(0).getPassword());
-        Log.d("ListaUsers",miControladorLogin.getListaUsersFinal().get(1).getMail());
+        //Log.d("ListaUsers",miControladorLogin.getListaUsersFinal().get(1).getMail());
 
         //String mail=null;
             //aca tengo que agregar a la lista de users.
