@@ -21,6 +21,7 @@ import java.util.List;
 
 public class MyAdapterMenuPedido  extends RecyclerView.Adapter<MyViewHolderMenuPedido> implements Handler.Callback{
     private  List<ModelProductoMenu> listaMenuPedido;
+    ModelProductoMenu pm;
     private IOnItemClickMenuPedido listenerRvMenuPedido; // se implementa en el main.
     private Bitmap descargaImagenItem =null;
     private Bitmap auxdescargaImagenItem; // para intentar de no ir a buscar siempre.
@@ -47,52 +48,47 @@ public class MyAdapterMenuPedido  extends RecyclerView.Adapter<MyViewHolderMenuP
 
     @Override
     public void onBindViewHolder(MyViewHolderMenuPedido holder, int position) {
-        ModelProductoMenu pm=listaMenuPedido.get(position);
+        pm=listaMenuPedido.get(position);
+
+        if(pm.getImagenDescargada()== null){
         Handler hImagen = new Handler(this);
-        Thread miHiloImagen = new Thread(new MiHiloImagen(hImagen,pm.getImagen().toString())); //aparte le paso el String de la url donde tiene que ir a buscar la imagen de item que va a crear.
+        Thread miHiloImagen = new Thread(new MiHiloImagen(hImagen,pm)); //Le paso el model completo y cargo la imagen en cada Run() del hilo y no pierdo el indice.
         miHiloImagen.setPriority(Thread.MAX_PRIORITY);
-        miHiloImagen.start();
+        miHiloImagen.start();}
+
         //Aca tengo que asignar los valores de los productos y llamar a un hilo para ir buscar la imagen
             //esta lista que recibo se la mando en el main y la tengo llenar con el get de la API
             //y aca le voy asignando al layout item(View holder) los atributos de mi lista.
         //aca podria hacer el star para mi hiloImagenes.
 
-
             Log.d("StringImagen"+pm.getNombre(),pm.getImagen().toString());
 
-
-            //Log.d("StringImagen","https://www.iconfinder.com/data/icons/shopping-hand-drawn-1/128/21-256.png");
-        // }
         holder.tvNombreMenuProducto.setText(pm.getNombre());  //este holder es instancia de MyViewHolder
         holder.tvPrecioMenuProducto.setText(pm.getPrecio().toString());// esto puede traer un error
-        //if(descargaImagenItem!=null) //solo actualizo si se desacargo la imagen, sino muestro la por defecto
-        //{
-        Log.d("Seteo la img holder","Seteo la img holder");
 
-        //Esto lo tengo que hacer si o si cuando termine me hilo.
-        if(descargaImagenItem!=null)  //si la imagen que traje tiene algo, recien ahi dejo de usa la por defecto.
+        if(pm.getImagenDescargada()!=null) //si la imagen que traje tiene algo, recien ahi dejo de usa la por defecto
         {
-        holder.imagenItem.setImageBitmap(descargaImagenItem); }
+        holder.imagenItem.setImageBitmap(pm.getImagenDescargada()); }
            // descargaImagenItem=null; }//lo paso a null para que traiga otra imagen}
         holder.setPosition(position); // seteo la position del item para el listener.
         Log.d("OnBind","Estoy en OnBind");
     }
 
     @Override
-    public boolean handleMessage(Message msg) {
-        Log.d("Respuesta", "Llego la respuesta del hilo");
-
-
-        byte[] bytes = (byte[]) msg.obj;
-        Log.d("HiloImagenHandle", "Recibiendo bytes (imagen)");
-        this.descargaImagenItem = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-
-        return true;
-    }
-    @Override
     public int getItemCount() {
         Log.d("OnCount","Estoy en ItemCount");
         return this.listaMenuPedido.size();
+    }
+    @Override
+    public boolean handleMessage(Message msg) {
+        Log.d("Respuesta", "Llego la respuesta del hilo");
+
+        Boolean seDescargo = (Boolean) msg.obj;
+        Log.d("HiloImagenHandle", seDescargo.toString());
+        //this.descargaImagenItem = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        if(seDescargo==true)
+            this.notifyDataSetChanged();
+        return true;
     }
 
 

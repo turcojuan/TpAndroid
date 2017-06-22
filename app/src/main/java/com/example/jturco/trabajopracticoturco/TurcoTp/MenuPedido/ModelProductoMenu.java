@@ -1,5 +1,7 @@
 package com.example.jturco.trabajopracticoturco.TurcoTp.MenuPedido;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by jturco on 15/05/2017.
  */
@@ -10,6 +12,7 @@ public class ModelProductoMenu {
     private Double precio;
     private String imagen;
     private String tipoMenu;
+    private Bitmap imagenDescargada;
 
     public String getNombre() {
         return nombre;
@@ -49,5 +52,13 @@ public class ModelProductoMenu {
 
     public void setTipoMenu(String tipoMenu) {
         this.tipoMenu = tipoMenu;
+    }
+
+    public Bitmap getImagenDescargada() {
+        return imagenDescargada;
+    }
+
+    public void setImagenDescargada(Bitmap imagenDescargada) {
+        this.imagenDescargada = imagenDescargada;
     }
 }

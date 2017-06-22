@@ -42,6 +42,9 @@ public class MyAdapterMiPedido extends RecyclerView.Adapter<MyViewHolderMiPedido
         ModelProductoMenu pm=listaMiPedido.get(position);
         holder.tvNombreMiProducto.setText(pm.getNombre());  //este holder es instancia de MyViewHolder
         holder.tvPrecioMiProducto.setText(pm.getPrecio().toString()); // esto puede traer un error
+        if (pm.getImagenDescargada()!=null) {
+            holder.imagenItem.setImageBitmap(pm.getImagenDescargada());
+        }
         holder.setPosition(position);// seteo la position del item para el listener.
         Log.d("OnBind","Estoy en OnBind");
     }
